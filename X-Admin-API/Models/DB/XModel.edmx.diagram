@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee02e732c3de407ba656fba3f0cdc2f6" Name="Diagram1" ZoomLevel="203">
+        <EntityTypeShape EntityType="XDBModel.tblCustomer" Width="1.5" PointX="1.125" PointY="0.75" />
+        <EntityTypeShape EntityType="XDBModel.tblItem" Width="2.625" PointX="3.125" PointY="0.75" />
+        <EntityTypeShape EntityType="XDBModel.tblItemGroup" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="XDBModel.sys_user" Width="1.5" PointX="8.625" PointY="0.75" />
+        <EntityTypeShape EntityType="XDBModel.tblItemWarehouse" Width="2.375" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="XDBModel.tblWarehouse" Width="1.75" PointX="10.625" PointY="0.75" />
+        <EntityTypeShape EntityType="XDBModel.sys_setting" Width="2.375" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="XDBModel.sm_doc" Width="1.5" PointX="6.375" PointY="5.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

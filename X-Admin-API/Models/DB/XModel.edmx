@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="XDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sm_doc">
+          <Key>
+            <PropertyRef Name="docs_docID" />
+          </Key>
+          <Property Name="docs_docID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="docs_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="docs_CreatedBy" Type="int" />
+          <Property Name="docs_CreatedDate" Type="datetime" />
+          <Property Name="docs_UpdatedBy" Type="int" />
+          <Property Name="docs_UpdatedDate" Type="datetime" />
+          <Property Name="docs_WorkflowID" Type="int" />
+          <Property Name="docs_WorkflowItemID" Type="int" />
+          <Property Name="docs_ZoneID" Type="int" />
+          <Property Name="docs_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="docs_Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="docs_TableID" Type="int" />
+          <Property Name="docs_Value" Type="nvarchar" MaxLength="255" />
+          <Property Name="docs_FilePath" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="sys_setting">
+          <Key>
+            <PropertyRef Name="sett_SettingID" />
+          </Key>
+          <Property Name="sett_SettingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sett_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="sett_CreatedBy" Type="int" />
+          <Property Name="sett_CreatedDate" Type="datetime" />
+          <Property Name="sett_UpdatedBy" Type="int" />
+          <Property Name="sett_UpdatedDate" Type="datetime" />
+          <Property Name="sett_WorkflowID" Type="int" />
+          <Property Name="sett_WorkflowItemID" Type="int" />
+          <Property Name="sett_ZoneID" Type="int" />
+          <Property Name="sett_Tax" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sett_isTax" Type="nvarchar" MaxLength="50" />
+          <Property Name="sett_CustomerID" Type="int" />
+          <Property Name="sett_ExRate" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sett_WarehouseID" Type="int" />
+          <Property Name="sett_CustomerlastPrice" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sys_user">
+          <Key>
+            <PropertyRef Name="user_userID" />
+          </Key>
+          <Property Name="user_userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="user_CreatedBy" Type="int" />
+          <Property Name="user_CreatedDate" Type="datetime" />
+          <Property Name="user_UpdatedBy" Type="int" />
+          <Property Name="user_UpdatedDate" Type="datetime" />
+          <Property Name="user_ZoneID" Type="int" />
+          <Property Name="user_userName" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_SID" Type="nvarchar" MaxLength="255" />
+          <Property Name="user_Gender" Type="nvarchar" MaxLength="20" />
+          <Property Name="user_Token" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="cust_CustomerID" />
+          </Key>
+          <Property Name="cust_CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cust_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_CreatedBy" Type="int" />
+          <Property Name="cust_CreatedDate" Type="datetime" />
+          <Property Name="cust_UpdatedBy" Type="int" />
+          <Property Name="cust_UpdatedDate" Type="datetime" />
+          <Property Name="cust_ZoneID" Type="int" />
+          <Property Name="cust_WorkflowID" Type="int" />
+          <Property Name="cust_WorkflowItemID" Type="int" />
+          <Property Name="cust_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="cust_Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Parent" Type="int" />
+          <Property Name="cust_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Address" Type="nvarchar" MaxLength="1000" />
+          <Property Name="cust_LastTransDate" Type="datetime" />
+          <Property Name="cust_NOI" Type="int" />
+          <Property Name="cust_Phone2" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_PriceListID" Type="int" />
+          <Property Name="cust_Zone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblItem">
+          <Key>
+            <PropertyRef Name="item_ItemID" />
+          </Key>
+          <Property Name="item_ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="item_CreatedBy" Type="int" />
+          <Property Name="item_CreatedDate" Type="datetime" />
+          <Property Name="item_UpdatedBy" Type="int" />
+          <Property Name="item_UpdatedDate" Type="datetime" />
+          <Property Name="item_ZoneID" Type="int" />
+          <Property Name="item_WorkflowID" Type="int" />
+          <Property Name="item_WorkflowItemID" Type="int" />
+          <Property Name="item_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="item_ItemGroupID" Type="int" />
+          <Property Name="item_Price" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="item_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="item_Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="item_Qty" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="item_isStock" Type="nvarchar" MaxLength="20" />
+          <Property Name="item_isSet" Type="nvarchar" MaxLength="50" />
+          <Property Name="item_SOAllocation" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="item_Cost" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="item_LastCost" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="item_ReOrderPoint" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="item_ItemLayout3" Type="int" />
+          <Property Name="item_Size" Type="nvarchar" MaxLength="50" />
+          <Property Name="item_Weight" Type="nvarchar" MaxLength="50" />
+          <Property Name="item_Volume" Type="nvarchar" MaxLength="50" />
+          <Property Name="item_IsCommission" Type="nvarchar" MaxLength="50" />
+          <Property Name="item_Unit" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblItemGroup">
+          <Key>
+            <PropertyRef Name="itmg_ItemGroupID" />
+          </Key>
+          <Property Name="itmg_ItemGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="itmg_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="itmg_CreatedBy" Type="int" />
+          <Property Name="itmg_CreatedDate" Type="datetime" />
+          <Property Name="itmg_UpdatedBy" Type="int" />
+          <Property Name="itmg_UpdatedDate" Type="datetime" />
+          <Property Name="itmg_ZoneID" Type="int" />
+          <Property Name="itmg_WorkflowID" Type="int" />
+          <Property Name="itmg_WorkflowItemID" Type="int" />
+          <Property Name="itmg_Name" Type="nvarchar" MaxLength="155" />
+          <Property Name="itmg_ItemCatID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblItemWarehouse">
+          <Key>
+            <PropertyRef Name="itwh_ItemWarehouseID" />
+          </Key>
+          <Property Name="itwh_ItemWarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="itwh_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="itwh_CreatedBy" Type="int" />
+          <Property Name="itwh_CreatedDate" Type="datetime" />
+          <Property Name="itwh_UpdatedBy" Type="int" />
+          <Property Name="itwh_UpdatedDate" Type="datetime" />
+          <Property Name="itwh_WorkflowID" Type="int" />
+          <Property Name="itwh_WorkflowItemID" Type="int" />
+          <Property Name="itwh_ZoneID" Type="int" />
+          <Property Name="itwh_ItemID" Type="int" />
+          <Property Name="itwh_WarehouseID" Type="int" />
+          <Property Name="itwh_Qty" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="itwh_SOAllocation" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="itwh_ItemLayout1" Type="int" />
+        </EntityType>
+        <EntityType Name="tblWarehouse">
+          <Key>
+            <PropertyRef Name="ware_WarehouseID" />
+          </Key>
+          <Property Name="ware_WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ware_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="ware_CreatedBy" Type="int" />
+          <Property Name="ware_CreatedDate" Type="datetime" />
+          <Property Name="ware_UpdatedBy" Type="int" />
+          <Property Name="ware_UpdatedDate" Type="datetime" />
+          <Property Name="ware_WorkflowID" Type="int" />
+          <Property Name="ware_WorkflowItemID" Type="int" />
+          <Property Name="ware_ZoneID" Type="int" />
+          <Property Name="ware_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ware_Address" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="XDBModelStoreContainer">
+          <EntitySet Name="sm_doc" EntityType="Self.sm_doc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_setting" EntityType="Self.sys_setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_user" EntityType="Self.sys_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblItem" EntityType="Self.tblItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblItemGroup" EntityType="Self.tblItemGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblItemWarehouse" EntityType="Self.tblItemWarehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWarehouse" EntityType="Self.tblWarehouse" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="XDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="THEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCustomers" EntityType="XDBModel.tblCustomer" />
+          <EntitySet Name="tblItems" EntityType="XDBModel.tblItem" />
+          <EntitySet Name="tblItemGroups" EntityType="XDBModel.tblItemGroup" />
+          <EntitySet Name="sys_user" EntityType="XDBModel.sys_user" />
+          <EntitySet Name="tblItemWarehouses" EntityType="XDBModel.tblItemWarehouse" />
+          <EntitySet Name="tblWarehouses" EntityType="XDBModel.tblWarehouse" />
+          <EntitySet Name="sys_setting" EntityType="XDBModel.sys_setting" />
+          <EntitySet Name="sm_doc" EntityType="XDBModel.sm_doc" />
+        </EntityContainer>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_CreatedBy" Type="Int32" />
+          <Property Name="cust_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="cust_UpdatedBy" Type="Int32" />
+          <Property Name="cust_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="cust_ZoneID" Type="Int32" />
+          <Property Name="cust_WorkflowID" Type="Int32" />
+          <Property Name="cust_WorkflowItemID" Type="Int32" />
+          <Property Name="cust_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_Parent" Type="Int32" />
+          <Property Name="code" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="cust_LastTransDate" Type="DateTime" Precision="3" />
+          <Property Name="cust_NOI" Type="Int32" />
+          <Property Name="cust_Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_PriceListID" Type="Int32" />
+          <Property Name="cust_Zone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="item_CreatedBy" Type="Int32" />
+          <Property Name="item_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="item_UpdatedBy" Type="Int32" />
+          <Property Name="item_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="item_ZoneID" Type="Int32" />
+          <Property Name="item_WorkflowID" Type="Int32" />
+          <Property Name="item_WorkflowItemID" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="itemGroupID" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="item_isStock" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="item_isSet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="item_SOAllocation" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="cost" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="lastCost" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="item_ReOrderPoint" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="item_ItemLayout3" Type="Int32" />
+          <Property Name="item_Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="item_Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="item_Volume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="item_IsCommission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="item_Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblItemGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="itmg_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="itmg_CreatedBy" Type="Int32" />
+          <Property Name="itmg_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="itmg_UpdatedBy" Type="Int32" />
+          <Property Name="itmg_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="itmg_ZoneID" Type="Int32" />
+          <Property Name="itmg_WorkflowID" Type="Int32" />
+          <Property Name="itmg_WorkflowItemID" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="155" FixedLength="false" Unicode="true" />
+          <Property Name="itmg_ItemCatID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sys_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="user_CreatedBy" Type="Int32" />
+          <Property Name="user_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="user_UpdatedBy" Type="Int32" />
+          <Property Name="user_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="user_ZoneID" Type="Int32" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_SID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblItemWarehouse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="itwh_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="itwh_CreatedBy" Type="Int32" />
+          <Property Name="itwh_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="itwh_UpdatedBy" Type="Int32" />
+          <Property Name="itwh_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="itwh_WorkflowID" Type="Int32" />
+          <Property Name="itwh_WorkflowItemID" Type="Int32" />
+          <Property Name="itwh_ZoneID" Type="Int32" />
+          <Property Name="itemID" Type="Int32" />
+          <Property Name="wareHouseID" Type="Int32" />
+          <Property Name="quantity" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="itwh_SOAllocation" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="itwh_ItemLayout1" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblWarehouse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ware_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ware_CreatedBy" Type="Int32" />
+          <Property Name="ware_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ware_UpdatedBy" Type="Int32" />
+          <Property Name="ware_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ware_WorkflowID" Type="Int32" />
+          <Property Name="ware_WorkflowItemID" Type="Int32" />
+          <Property Name="ware_ZoneID" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sys_setting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sett_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="sett_CreatedBy" Type="Int32" />
+          <Property Name="sett_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="sett_UpdatedBy" Type="Int32" />
+          <Property Name="sett_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="sett_WorkflowID" Type="Int32" />
+          <Property Name="sett_WorkflowItemID" Type="Int32" />
+          <Property Name="sett_ZoneID" Type="Int32" />
+          <Property Name="sett_Tax" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sett_isTax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customerID" Type="Int32" />
+          <Property Name="sett_ExRate" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="warehouseID" Type="Int32" />
+          <Property Name="sett_CustomerlastPrice" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sm_doc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="docs_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="docs_CreatedBy" Type="Int32" />
+          <Property Name="docs_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="docs_UpdatedBy" Type="Int32" />
+          <Property Name="docs_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="docs_WorkflowID" Type="Int32" />
+          <Property Name="docs_WorkflowItemID" Type="Int32" />
+          <Property Name="docs_ZoneID" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="docs_Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="tableID" Type="Int32" />
+          <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="path" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="XDBModelStoreContainer" CdmEntityContainer="THEntities">
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="XDBModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="cust_Zone" ColumnName="cust_Zone" />
+                <ScalarProperty Name="cust_PriceListID" ColumnName="cust_PriceListID" />
+                <ScalarProperty Name="cust_Phone2" ColumnName="cust_Phone2" />
+                <ScalarProperty Name="cust_NOI" ColumnName="cust_NOI" />
+                <ScalarProperty Name="cust_LastTransDate" ColumnName="cust_LastTransDate" />
+                <ScalarProperty Name="address" ColumnName="cust_Address" />
+                <ScalarProperty Name="code" ColumnName="cust_Code" />
+                <ScalarProperty Name="cust_Parent" ColumnName="cust_Parent" />
+                <ScalarProperty Name="cust_Type" ColumnName="cust_Type" />
+                <ScalarProperty Name="cust_Email" ColumnName="cust_Email" />
+                <ScalarProperty Name="phone" ColumnName="cust_Phone" />
+                <ScalarProperty Name="cust_Deleted" ColumnName="cust_Deleted" />
+                <ScalarProperty Name="cust_WorkflowItemID" ColumnName="cust_WorkflowItemID" />
+                <ScalarProperty Name="cust_WorkflowID" ColumnName="cust_WorkflowID" />
+                <ScalarProperty Name="cust_ZoneID" ColumnName="cust_ZoneID" />
+                <ScalarProperty Name="cust_UpdatedDate" ColumnName="cust_UpdatedDate" />
+                <ScalarProperty Name="cust_UpdatedBy" ColumnName="cust_UpdatedBy" />
+                <ScalarProperty Name="cust_CreatedDate" ColumnName="cust_CreatedDate" />
+                <ScalarProperty Name="cust_CreatedBy" ColumnName="cust_CreatedBy" />
+                <ScalarProperty Name="name" ColumnName="cust_Name" />
+                <ScalarProperty Name="id" ColumnName="cust_CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblItems">
+            <EntityTypeMapping TypeName="XDBModel.tblItem">
+              <MappingFragment StoreEntitySet="tblItem">
+                <ScalarProperty Name="item_Unit" ColumnName="item_Unit" />
+                <ScalarProperty Name="item_IsCommission" ColumnName="item_IsCommission" />
+                <ScalarProperty Name="item_Volume" ColumnName="item_Volume" />
+                <ScalarProperty Name="item_Weight" ColumnName="item_Weight" />
+                <ScalarProperty Name="item_Size" ColumnName="item_Size" />
+                <ScalarProperty Name="item_ItemLayout3" ColumnName="item_ItemLayout3" />
+                <ScalarProperty Name="item_ReOrderPoint" ColumnName="item_ReOrderPoint" />
+                <ScalarProperty Name="lastCost" ColumnName="item_LastCost" />
+                <ScalarProperty Name="cost" ColumnName="item_Cost" />
+                <ScalarProperty Name="item_SOAllocation" ColumnName="item_SOAllocation" />
+                <ScalarProperty Name="item_isSet" ColumnName="item_isSet" />
+                <ScalarProperty Name="item_isStock" ColumnName="item_isStock" />
+                <ScalarProperty Name="quantity" ColumnName="item_Qty" />
+                <ScalarProperty Name="description" ColumnName="item_Description" />
+                <ScalarProperty Name="code" ColumnName="item_Code" />
+                <ScalarProperty Name="price" ColumnName="item_Price" />
+                <ScalarProperty Name="itemGroupID" ColumnName="item_ItemGroupID" />
+                <ScalarProperty Name="name" ColumnName="item_Name" />
+                <ScalarProperty Name="item_WorkflowItemID" ColumnName="item_WorkflowItemID" />
+                <ScalarProperty Name="item_WorkflowID" ColumnName="item_WorkflowID" />
+                <ScalarProperty Name="item_ZoneID" ColumnName="item_ZoneID" />
+                <ScalarProperty Name="item_UpdatedDate" ColumnName="item_UpdatedDate" />
+                <ScalarProperty Name="item_UpdatedBy" ColumnName="item_UpdatedBy" />
+                <ScalarProperty Name="item_CreatedDate" ColumnName="item_CreatedDate" />
+                <ScalarProperty Name="item_CreatedBy" ColumnName="item_CreatedBy" />
+                <ScalarProperty Name="item_Deleted" ColumnName="item_Deleted" />
+                <ScalarProperty Name="id" ColumnName="item_ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblItemGroups">
+            <EntityTypeMapping TypeName="XDBModel.tblItemGroup">
+              <MappingFragment StoreEntitySet="tblItemGroup">
+                <ScalarProperty Name="itmg_ItemCatID" ColumnName="itmg_ItemCatID" />
+                <ScalarProperty Name="name" ColumnName="itmg_Name" />
+                <ScalarProperty Name="itmg_WorkflowItemID" ColumnName="itmg_WorkflowItemID" />
+                <ScalarProperty Name="itmg_WorkflowID" ColumnName="itmg_WorkflowID" />
+                <ScalarProperty Name="itmg_ZoneID" ColumnName="itmg_ZoneID" />
+                <ScalarProperty Name="itmg_UpdatedDate" ColumnName="itmg_UpdatedDate" />
+                <ScalarProperty Name="itmg_UpdatedBy" ColumnName="itmg_UpdatedBy" />
+                <ScalarProperty Name="itmg_CreatedDate" ColumnName="itmg_CreatedDate" />
+                <ScalarProperty Name="itmg_CreatedBy" ColumnName="itmg_CreatedBy" />
+                <ScalarProperty Name="itmg_Deleted" ColumnName="itmg_Deleted" />
+                <ScalarProperty Name="id" ColumnName="itmg_ItemGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_user">
+            <EntityTypeMapping TypeName="XDBModel.sys_user">
+              <MappingFragment StoreEntitySet="sys_user">
+                <ScalarProperty Name="token" ColumnName="user_Token" />
+                <ScalarProperty Name="gender" ColumnName="user_Gender" />
+                <ScalarProperty Name="user_SID" ColumnName="user_SID" />
+                <ScalarProperty Name="firstName" ColumnName="user_FirstName" />
+                <ScalarProperty Name="lastName" ColumnName="user_LastName" />
+                <ScalarProperty Name="password" ColumnName="user_Password" />
+                <ScalarProperty Name="userName" ColumnName="user_userName" />
+                <ScalarProperty Name="user_ZoneID" ColumnName="user_ZoneID" />
+                <ScalarProperty Name="user_UpdatedDate" ColumnName="user_UpdatedDate" />
+                <ScalarProperty Name="user_UpdatedBy" ColumnName="user_UpdatedBy" />
+                <ScalarProperty Name="user_CreatedDate" ColumnName="user_CreatedDate" />
+                <ScalarProperty Name="user_CreatedBy" ColumnName="user_CreatedBy" />
+                <ScalarProperty Name="user_Deleted" ColumnName="user_Deleted" />
+                <ScalarProperty Name="id" ColumnName="user_userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblItemWarehouses">
+            <EntityTypeMapping TypeName="XDBModel.tblItemWarehouse">
+              <MappingFragment StoreEntitySet="tblItemWarehouse">
+                <ScalarProperty Name="itwh_ItemLayout1" ColumnName="itwh_ItemLayout1" />
+                <ScalarProperty Name="itwh_SOAllocation" ColumnName="itwh_SOAllocation" />
+                <ScalarProperty Name="quantity" ColumnName="itwh_Qty" />
+                <ScalarProperty Name="wareHouseID" ColumnName="itwh_WarehouseID" />
+                <ScalarProperty Name="itemID" ColumnName="itwh_ItemID" />
+                <ScalarProperty Name="itwh_ZoneID" ColumnName="itwh_ZoneID" />
+                <ScalarProperty Name="itwh_WorkflowItemID" ColumnName="itwh_WorkflowItemID" />
+                <ScalarProperty Name="itwh_WorkflowID" ColumnName="itwh_WorkflowID" />
+                <ScalarProperty Name="itwh_UpdatedDate" ColumnName="itwh_UpdatedDate" />
+                <ScalarProperty Name="itwh_UpdatedBy" ColumnName="itwh_UpdatedBy" />
+                <ScalarProperty Name="itwh_CreatedDate" ColumnName="itwh_CreatedDate" />
+                <ScalarProperty Name="itwh_CreatedBy" ColumnName="itwh_CreatedBy" />
+                <ScalarProperty Name="itwh_Deleted" ColumnName="itwh_Deleted" />
+                <ScalarProperty Name="id" ColumnName="itwh_ItemWarehouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWarehouses">
+            <EntityTypeMapping TypeName="XDBModel.tblWarehouse">
+              <MappingFragment StoreEntitySet="tblWarehouse">
+                <ScalarProperty Name="address" ColumnName="ware_Address" />
+                <ScalarProperty Name="name" ColumnName="ware_Name" />
+                <ScalarProperty Name="ware_ZoneID" ColumnName="ware_ZoneID" />
+                <ScalarProperty Name="ware_WorkflowItemID" ColumnName="ware_WorkflowItemID" />
+                <ScalarProperty Name="ware_WorkflowID" ColumnName="ware_WorkflowID" />
+                <ScalarProperty Name="ware_UpdatedDate" ColumnName="ware_UpdatedDate" />
+                <ScalarProperty Name="ware_UpdatedBy" ColumnName="ware_UpdatedBy" />
+                <ScalarProperty Name="ware_CreatedDate" ColumnName="ware_CreatedDate" />
+                <ScalarProperty Name="ware_CreatedBy" ColumnName="ware_CreatedBy" />
+                <ScalarProperty Name="ware_Deleted" ColumnName="ware_Deleted" />
+                <ScalarProperty Name="id" ColumnName="ware_WarehouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_setting">
+            <EntityTypeMapping TypeName="XDBModel.sys_setting">
+              <MappingFragment StoreEntitySet="sys_setting">
+                <ScalarProperty Name="sett_CustomerlastPrice" ColumnName="sett_CustomerlastPrice" />
+                <ScalarProperty Name="warehouseID" ColumnName="sett_WarehouseID" />
+                <ScalarProperty Name="sett_ExRate" ColumnName="sett_ExRate" />
+                <ScalarProperty Name="customerID" ColumnName="sett_CustomerID" />
+                <ScalarProperty Name="sett_isTax" ColumnName="sett_isTax" />
+                <ScalarProperty Name="sett_Tax" ColumnName="sett_Tax" />
+                <ScalarProperty Name="sett_ZoneID" ColumnName="sett_ZoneID" />
+                <ScalarProperty Name="sett_WorkflowItemID" ColumnName="sett_WorkflowItemID" />
+                <ScalarProperty Name="sett_WorkflowID" ColumnName="sett_WorkflowID" />
+                <ScalarProperty Name="sett_UpdatedDate" ColumnName="sett_UpdatedDate" />
+                <ScalarProperty Name="sett_UpdatedBy" ColumnName="sett_UpdatedBy" />
+                <ScalarProperty Name="sett_CreatedDate" ColumnName="sett_CreatedDate" />
+                <ScalarProperty Name="sett_CreatedBy" ColumnName="sett_CreatedBy" />
+                <ScalarProperty Name="sett_Deleted" ColumnName="sett_Deleted" />
+                <ScalarProperty Name="id" ColumnName="sett_SettingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sm_doc">
+            <EntityTypeMapping TypeName="XDBModel.sm_doc">
+              <MappingFragment StoreEntitySet="sm_doc">
+                <ScalarProperty Name="path" ColumnName="docs_FilePath" />
+                <ScalarProperty Name="value" ColumnName="docs_Value" />
+                <ScalarProperty Name="tableID" ColumnName="docs_TableID" />
+                <ScalarProperty Name="docs_Description" ColumnName="docs_Description" />
+                <ScalarProperty Name="name" ColumnName="docs_Name" />
+                <ScalarProperty Name="docs_ZoneID" ColumnName="docs_ZoneID" />
+                <ScalarProperty Name="docs_WorkflowItemID" ColumnName="docs_WorkflowItemID" />
+                <ScalarProperty Name="docs_WorkflowID" ColumnName="docs_WorkflowID" />
+                <ScalarProperty Name="docs_UpdatedDate" ColumnName="docs_UpdatedDate" />
+                <ScalarProperty Name="docs_UpdatedBy" ColumnName="docs_UpdatedBy" />
+                <ScalarProperty Name="docs_CreatedDate" ColumnName="docs_CreatedDate" />
+                <ScalarProperty Name="docs_CreatedBy" ColumnName="docs_CreatedBy" />
+                <ScalarProperty Name="docs_Deleted" ColumnName="docs_Deleted" />
+                <ScalarProperty Name="id" ColumnName="docs_docID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
