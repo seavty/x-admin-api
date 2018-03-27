@@ -10,7 +10,7 @@ namespace X_Admin_API.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Home Page222";
 
             return View();
         }
