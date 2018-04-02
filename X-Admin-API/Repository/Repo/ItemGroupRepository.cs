@@ -124,9 +124,15 @@ namespace X_Admin_API.Repository.Repo
         //-> GetList
         public async Task<ItemGroupListDTO> GetList(int currentPage)
         {
+            /*
             IQueryable<tblItemGroup> itemGroups = from g in db.tblItemGroups
                                                   where g.itmg_Deleted == null
                                                   orderby g.name ascending
+                                                  select g;
+            */
+            IQueryable<tblItemGroup> itemGroups = from g in db.tblItemGroups
+                                                  where g.itmg_Deleted == null
+                                                  orderby g.id ascending
                                                   select g;
             return await Listing(currentPage, itemGroups);
         }
