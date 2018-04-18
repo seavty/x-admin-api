@@ -22,7 +22,7 @@ namespace X_Admin_API.Models.DTO.Customer
 
         [JsonProperty(Order = 4)]
         [Required]
-        [StringLength(50, MinimumLength = 9)]
+        [MaxLength(100)]
         public string phone { get; set; }
 
         [JsonProperty(Order = 5)]

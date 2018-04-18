@@ -32,7 +32,7 @@ namespace X_Admin_API.Repository
             newDTO = StringHelper.TrimStringProperties(newDTO);
             var checkName = await db.tblCustomers.FirstOrDefaultAsync(x => x.cust_Deleted == null && x.name == newDTO.name); // check whether itemgroup name exist or not
             if (checkName != null)
-                throw new HttpException((int)HttpStatusCode.BadRequest, "This name already exsits");
+                throw new HttpException((int)HttpStatusCode.BadRequest, "This customer name already exsits.");
 
             tblCustomer customer = (tblCustomer)Helper.Helper.MapDTOToDBClass<CustomerNewDTO, tblCustomer>(newDTO, new tblCustomer());
             customer.cust_CreatedDate = DateTime.Now;

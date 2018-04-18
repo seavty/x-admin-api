@@ -156,6 +156,65 @@
           <Property Name="itwh_SOAllocation" Type="numeric" Precision="18" Scale="6" />
           <Property Name="itwh_ItemLayout1" Type="int" />
         </EntityType>
+        <EntityType Name="tblSaleOrder">
+          <Key>
+            <PropertyRef Name="sord_SaleOrderID" />
+          </Key>
+          <Property Name="sord_SaleOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sord_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="sord_CreatedBy" Type="int" />
+          <Property Name="sord_CreatedDate" Type="datetime" />
+          <Property Name="sord_UpdatedBy" Type="int" />
+          <Property Name="sord_UpdatedDate" Type="datetime" />
+          <Property Name="sord_WorkflowID" Type="int" />
+          <Property Name="sord_WorkflowItemID" Type="int" />
+          <Property Name="sord_ZoneID" Type="int" />
+          <Property Name="sord_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="sord_Date" Type="datetime" />
+          <Property Name="sord_EndDate" Type="datetime" />
+          <Property Name="sord_Disc" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sord_Discount" Type="nvarchar" MaxLength="50" />
+          <Property Name="sord_DiscountAmount" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sord_GTotal" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sord_isTax" Type="nvarchar" MaxLength="50" />
+          <Property Name="sord_Remark" Type="nvarchar" MaxLength="1000" />
+          <Property Name="sord_SubTotal" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sord_Tax" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sord_Total" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sord_WarehouseID" Type="int" />
+          <Property Name="sord_CustomerID" Type="int" />
+          <Property Name="sord_isComplete" Type="nvarchar" MaxLength="20" />
+          <Property Name="sord_Deposit" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sord_DepositUsed" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="sord_PriceListID" Type="int" />
+          <Property Name="sord_Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="sord_Company" Type="nvarchar" MaxLength="50" />
+          <Property Name="sord_SalesmanID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSaleOrderItem">
+          <Key>
+            <PropertyRef Name="soit_SaleOrderItemID" />
+          </Key>
+          <Property Name="soit_SaleOrderItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="soit_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="soit_CreatedBy" Type="int" />
+          <Property Name="soit_CreatedDate" Type="datetime" />
+          <Property Name="soit_UpdatedBy" Type="int" />
+          <Property Name="soit_UpdatedDate" Type="datetime" />
+          <Property Name="soit_WorkflowID" Type="int" />
+          <Property Name="soit_WorkflowItemID" Type="int" />
+          <Property Name="soit_ZoneID" Type="int" />
+          <Property Name="soit_ItemID" Type="int" />
+          <Property Name="soit_Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="soit_Qty" Type="int" />
+          <Property Name="soit_Price" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="soit_Total" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="soit_SaleOrderID" Type="int" />
+          <Property Name="soit_ShipQty" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="soit_RemainQty" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="soit_WarehouseID" Type="int" />
+          <Property Name="soit_Unit" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tblWarehouse">
           <Key>
             <PropertyRef Name="ware_WarehouseID" />
@@ -180,6 +239,8 @@
           <EntitySet Name="tblItem" EntityType="Self.tblItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblItemGroup" EntityType="Self.tblItemGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblItemWarehouse" EntityType="Self.tblItemWarehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSaleOrder" EntityType="Self.tblSaleOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSaleOrderItem" EntityType="Self.tblSaleOrderItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblWarehouse" EntityType="Self.tblWarehouse" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -195,6 +256,8 @@
           <EntitySet Name="tblWarehouses" EntityType="XDBModel.tblWarehouse" />
           <EntitySet Name="sys_setting" EntityType="XDBModel.sys_setting" />
           <EntitySet Name="sm_doc" EntityType="XDBModel.sm_doc" />
+          <EntitySet Name="tblSaleOrders" EntityType="XDBModel.tblSaleOrder" />
+          <EntitySet Name="tblSaleOrderItems" EntityType="XDBModel.tblSaleOrderItem" />
         </EntityContainer>
         <EntityType Name="tblCustomer">
           <Key>
@@ -362,6 +425,65 @@
           <Property Name="tableID" Type="Int32" />
           <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="path" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblSaleOrder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sord_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="sord_CreatedBy" Type="Int32" />
+          <Property Name="sord_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="sord_UpdatedBy" Type="Int32" />
+          <Property Name="sord_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="sord_WorkflowID" Type="Int32" />
+          <Property Name="sord_WorkflowItemID" Type="Int32" />
+          <Property Name="sord_ZoneID" Type="Int32" />
+          <Property Name="saleOrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sord_Date" Type="DateTime" Precision="3" />
+          <Property Name="sord_EndDate" Type="DateTime" Precision="3" />
+          <Property Name="sord_Disc" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sord_Discount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sord_DiscountAmount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sord_GTotal" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sord_isTax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sord_Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="sord_SubTotal" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sord_Tax" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="warehouseID" Type="Int32" />
+          <Property Name="customerID" Type="Int32" />
+          <Property Name="sord_isComplete" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="sord_Deposit" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sord_DepositUsed" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sord_PriceListID" Type="Int32" />
+          <Property Name="sord_Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sord_Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sord_SalesmanID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblSaleOrderItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="soit_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="soit_CreatedBy" Type="Int32" />
+          <Property Name="soit_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="soit_UpdatedBy" Type="Int32" />
+          <Property Name="soit_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="soit_WorkflowID" Type="Int32" />
+          <Property Name="soit_WorkflowItemID" Type="Int32" />
+          <Property Name="soit_ZoneID" Type="Int32" />
+          <Property Name="soit_ItemID" Type="Int32" />
+          <Property Name="soit_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="soit_Qty" Type="Int32" />
+          <Property Name="soit_Price" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="soit_Total" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="saleOrderID" Type="Int32" />
+          <Property Name="soit_ShipQty" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="soit_RemainQty" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="soit_WarehouseID" Type="Int32" />
+          <Property Name="soit_Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -541,6 +663,67 @@
                 <ScalarProperty Name="docs_CreatedBy" ColumnName="docs_CreatedBy" />
                 <ScalarProperty Name="docs_Deleted" ColumnName="docs_Deleted" />
                 <ScalarProperty Name="id" ColumnName="docs_docID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSaleOrders">
+            <EntityTypeMapping TypeName="XDBModel.tblSaleOrder">
+              <MappingFragment StoreEntitySet="tblSaleOrder">
+                <ScalarProperty Name="sord_SalesmanID" ColumnName="sord_SalesmanID" />
+                <ScalarProperty Name="sord_Company" ColumnName="sord_Company" />
+                <ScalarProperty Name="sord_Province" ColumnName="sord_Province" />
+                <ScalarProperty Name="sord_PriceListID" ColumnName="sord_PriceListID" />
+                <ScalarProperty Name="sord_DepositUsed" ColumnName="sord_DepositUsed" />
+                <ScalarProperty Name="sord_Deposit" ColumnName="sord_Deposit" />
+                <ScalarProperty Name="sord_isComplete" ColumnName="sord_isComplete" />
+                <ScalarProperty Name="customerID" ColumnName="sord_CustomerID" />
+                <ScalarProperty Name="warehouseID" ColumnName="sord_WarehouseID" />
+                <ScalarProperty Name="total" ColumnName="sord_Total" />
+                <ScalarProperty Name="sord_Tax" ColumnName="sord_Tax" />
+                <ScalarProperty Name="sord_SubTotal" ColumnName="sord_SubTotal" />
+                <ScalarProperty Name="sord_Remark" ColumnName="sord_Remark" />
+                <ScalarProperty Name="sord_isTax" ColumnName="sord_isTax" />
+                <ScalarProperty Name="sord_GTotal" ColumnName="sord_GTotal" />
+                <ScalarProperty Name="sord_DiscountAmount" ColumnName="sord_DiscountAmount" />
+                <ScalarProperty Name="sord_Discount" ColumnName="sord_Discount" />
+                <ScalarProperty Name="sord_Disc" ColumnName="sord_Disc" />
+                <ScalarProperty Name="sord_EndDate" ColumnName="sord_EndDate" />
+                <ScalarProperty Name="sord_Date" ColumnName="sord_Date" />
+                <ScalarProperty Name="saleOrderNo" ColumnName="sord_Name" />
+                <ScalarProperty Name="sord_ZoneID" ColumnName="sord_ZoneID" />
+                <ScalarProperty Name="sord_WorkflowItemID" ColumnName="sord_WorkflowItemID" />
+                <ScalarProperty Name="sord_WorkflowID" ColumnName="sord_WorkflowID" />
+                <ScalarProperty Name="sord_UpdatedDate" ColumnName="sord_UpdatedDate" />
+                <ScalarProperty Name="sord_UpdatedBy" ColumnName="sord_UpdatedBy" />
+                <ScalarProperty Name="sord_CreatedDate" ColumnName="sord_CreatedDate" />
+                <ScalarProperty Name="sord_CreatedBy" ColumnName="sord_CreatedBy" />
+                <ScalarProperty Name="sord_Deleted" ColumnName="sord_Deleted" />
+                <ScalarProperty Name="id" ColumnName="sord_SaleOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSaleOrderItems">
+            <EntityTypeMapping TypeName="XDBModel.tblSaleOrderItem">
+              <MappingFragment StoreEntitySet="tblSaleOrderItem">
+                <ScalarProperty Name="soit_Unit" ColumnName="soit_Unit" />
+                <ScalarProperty Name="soit_WarehouseID" ColumnName="soit_WarehouseID" />
+                <ScalarProperty Name="soit_RemainQty" ColumnName="soit_RemainQty" />
+                <ScalarProperty Name="soit_ShipQty" ColumnName="soit_ShipQty" />
+                <ScalarProperty Name="saleOrderID" ColumnName="soit_SaleOrderID" />
+                <ScalarProperty Name="soit_Total" ColumnName="soit_Total" />
+                <ScalarProperty Name="soit_Price" ColumnName="soit_Price" />
+                <ScalarProperty Name="soit_Qty" ColumnName="soit_Qty" />
+                <ScalarProperty Name="soit_Description" ColumnName="soit_Description" />
+                <ScalarProperty Name="soit_ItemID" ColumnName="soit_ItemID" />
+                <ScalarProperty Name="soit_ZoneID" ColumnName="soit_ZoneID" />
+                <ScalarProperty Name="soit_WorkflowItemID" ColumnName="soit_WorkflowItemID" />
+                <ScalarProperty Name="soit_WorkflowID" ColumnName="soit_WorkflowID" />
+                <ScalarProperty Name="soit_UpdatedDate" ColumnName="soit_UpdatedDate" />
+                <ScalarProperty Name="soit_UpdatedBy" ColumnName="soit_UpdatedBy" />
+                <ScalarProperty Name="soit_CreatedDate" ColumnName="soit_CreatedDate" />
+                <ScalarProperty Name="soit_CreatedBy" ColumnName="soit_CreatedBy" />
+                <ScalarProperty Name="soit_Deleted" ColumnName="soit_Deleted" />
+                <ScalarProperty Name="id" ColumnName="soit_SaleOrderItemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

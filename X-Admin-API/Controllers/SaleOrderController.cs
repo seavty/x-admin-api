@@ -6,16 +6,53 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 using X_Admin_API.Models.DTO.SaleOrder;
 using X_Admin_API.Models.DTO.User;
+using X_Admin_API.Repository.Repo;
 
 namespace X_Admin_API.Controllers
 {
     public class SaleOrderController : ApiController
     {
         private const string route = Helper.Helper.apiVersion + "saleorders";
+        private const string routeWithConstraint = route + "/{id:int:min(1)}";
+        private SaleOrderRepository repository = null;
+
+        public SaleOrderController()
+        {
+            repository = new SaleOrderRepository();
+        }
+
+        //-> Customer List
+        [HttpGet]
+        [Route(route)]
+        [ResponseType(typeof(SaleOrderListDTO))]
+        public async Task<IHttpActionResult> Get([FromUri] int currentPage)
+        {
+            return Ok(await repository.GetList(currentPage));
+        }
+
+
+        //-> Delete ItemGroup
+        [HttpDelete]
+        [Route(routeWithConstraint)]
+        public async Task<IHttpActionResult> Delete(int id)
+        {
+            try
+            {
+                if (await repository.Delete(id))
+                    return Ok();
+                return NotFound();
+            }
+            catch (HttpException)
+            {
+                return NotFound();
+            }
+        }
 
 
         [HttpPost]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace X_Admin_API.Models.DTO.SaleOrder
 {
     public class SaleOrderBase
     {
+        [JsonProperty(Order = 1)]
         [Required]
         public int? id { get; set; }
 
+        /*
         [Required]
         public int customerID { get; set; }
 
@@ -20,6 +23,7 @@ namespace X_Admin_API.Models.DTO.SaleOrder
 
         [Required]
         public List<SaleOrderItemBase> items { get; set; }
-
+        */
+        
     }
 }

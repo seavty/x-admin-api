@@ -213,6 +213,12 @@
     </Compile>
     <Compile Include="Helper\clsGlobal.cs" />
     <Compile Include="Helper\StringHelper.cs" />
+    <Compile Include="Models\DB\tblSaleOrder.cs">
+      <DependentUpon>XModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\tblSaleOrderItem.cs">
+      <DependentUpon>XModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DTO\Customer\CustomerBase.cs" />
     <Compile Include="Models\DTO\Customer\CustomerEditDTO.cs" />
     <Compile Include="Models\DTO\Customer\CustomerListDTO.cs" />
@@ -282,7 +288,9 @@
     <Compile Include="Models\DTO\SaleOrderItem\SaleOrderItemBase.cs" />
     <Compile Include="Models\DTO\SaleOrderItem\SaleOrderItemNewDTO.cs" />
     <Compile Include="Models\DTO\SaleOrder\SaleOrderBase.cs" />
+    <Compile Include="Models\DTO\SaleOrder\SaleOrderListDTO.cs" />
     <Compile Include="Models\DTO\SaleOrder\SaleOrderNewDTO.cs" />
+    <Compile Include="Models\DTO\SaleOrder\SaleOrderViewDTO.cs" />
     <Compile Include="Models\DTO\Setting\SettingViewDTO.cs" />
     <Compile Include="Models\DTO\SlideShow\SlideShowBase.cs" />
     <Compile Include="Models\DTO\SlideShow\SlideShowListDTO.cs" />
@@ -310,6 +318,7 @@
     <Compile Include="Repository\Repo\ItemGroupRepository.cs" />
     <Compile Include="Repository\Repo\ItemGroupWithItemRepository.cs" />
     <Compile Include="Repository\Repo\ItemRepository.cs" />
+    <Compile Include="Repository\Repo\SaleOrderRepository.cs" />
     <Compile Include="Repository\Repo\SlideShowRepository.cs" />
     <Compile Include="Repository\Repo\UserRepository.cs" />
   </ItemGroup>

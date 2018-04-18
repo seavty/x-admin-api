@@ -33,5 +33,7 @@ namespace X_Admin_API.Models.DB
         public virtual DbSet<tblWarehouse> tblWarehouses { get; set; }
         public virtual DbSet<sys_setting> sys_setting { get; set; }
         public virtual DbSet<sm_doc> sm_doc { get; set; }
+        public virtual DbSet<tblSaleOrder> tblSaleOrders { get; set; }
+        public virtual DbSet<tblSaleOrderItem> tblSaleOrderItems { get; set; }
     }
 }
