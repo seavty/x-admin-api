@@ -115,7 +115,16 @@ namespace X_Admin_API.Repository.Repo
         {
             var itemGroup = await db.tblItemGroups.FirstOrDefaultAsync(r => r.itmg_Deleted == null && r.id == id);
             if (itemGroup == null)
-                throw new HttpException((int)HttpStatusCode.NotFound, "NotFound");
+                throw new HttpException((int)HttpStatusCode.NotFound, "Not Found");
+
+            IQueryable<tblItem> items = from i in db.tblItems
+                                        where i.item_Deleted == null && i.itemGroupID == id
+                                        orderby i.name ascending
+                                        select i;
+            int totalRecord = await items.CountAsync();
+            if (totalRecord>0)
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Cannot delete this record because it is currently in use!");
+
             itemGroup.itmg_Deleted = "1";
             await db.SaveChangesAsync();
             return true;

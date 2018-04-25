@@ -86,10 +86,14 @@ namespace X_Admin_API.Controllers
                     return Ok();
                 return NotFound();
             }
-            catch (HttpException)
+            catch (HttpException ex)
             {
-                return NotFound();
+                if (ex.Message == "Not Found")
+                    return NotFound();
+                else
+                    return BadRequest(ex.Message);
             }
+            
         }
 
         //-> ItemGroup List

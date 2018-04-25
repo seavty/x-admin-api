@@ -71,6 +71,7 @@ namespace X_Admin_API.Repository.Repo
         //-> SelectByID
         public async Task<ItemViewDTO> SelectByID(int id)
         {
+            /*
             var items = await (from i in db.tblItems
                                join g in db.tblItemGroups.Where(x => x.itmg_Deleted == null)
                                     on i.itemGroupID equals g.id
@@ -80,6 +81,7 @@ namespace X_Admin_API.Repository.Repo
                                orderby i.name ascending
                                select new { item = i, document = document, itemGroup = g }
                             ).ToListAsync();
+             
             if (items.Count == 0)
                 throw new HttpException((int)HttpStatusCode.NotFound, "NotFound");
 
@@ -91,6 +93,22 @@ namespace X_Admin_API.Repository.Repo
             itemView.itemGroup = itemGroupView;
 
             return itemView;
+            */
+
+            
+            
+             //--i want use like this, but seem getting error with ayn
+            var item = await db.tblItems.FirstOrDefaultAsync(r => r.item_Deleted == null && r.id == id);
+            if (item == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "NotFound");
+
+            var itemView = new ItemViewDTO();
+            itemView = MappingHelper.MapDBClassToDTO<tblItem, ItemViewDTO>(item);
+            itemView.documents = DocumentHelper.GetDocuments(db, ConstantHelper.document_ItemTableID, item.id);
+            itemView.itemGroup = await new ItemGroupRepository().SelectByID(int.Parse(item.itemGroupID.ToString()));
+            //itemView = MappingHelper.MapDBClassToDTO<tblItem, ItemViewDTO>(item); //if map at last like this , document & and item group will be null
+            return itemView;
+            
         }
 
         //-> Edit
@@ -164,6 +182,29 @@ namespace X_Admin_API.Repository.Repo
                                         orderby i.name ascending
                                         select i;
             return await Listing(currentPage, items, search);
+        }
+
+        //-> uploadimages
+        public async Task<ItemViewDTO> UploadImages(ItemUploadImageDTO itemUploadImage)
+        {
+            tblItem item = db.tblItems.FirstOrDefault(r => r.item_Deleted == null && r.id == itemUploadImage.id);
+            if (item == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "This record does not exsists or has been deleted");
+            using (var transaction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    List<sm_doc> documents = await DocumentHelper.SaveUploadImage(db, ConstantHelper.document_ItemTableID, itemUploadImage.id, itemUploadImage.base64s);
+                    transaction.Commit();
+
+                    return await SelectByID(item.id);
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception(ex.Message);
+                }
+            }
         }
 
 

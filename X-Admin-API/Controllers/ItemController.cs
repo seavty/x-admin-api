@@ -11,6 +11,8 @@ namespace X_Admin_API.Controllers
     {
         private const string route = Helper.Helper.apiVersion + "items";
         private const string routeWithConstraint = route + "/{id:int:min(1)}";
+        private const string uploadImages = routeWithConstraint + "/uploadimages";
+
         private ItemRepository repository = null;
 
         public ItemController()
@@ -106,6 +108,25 @@ namespace X_Admin_API.Controllers
         public async Task<IHttpActionResult> Search([FromUri] int currentPage, [FromUri] string search)
         {
             return Ok(await repository.Search(currentPage, search));
+        }
+
+
+        //-> upload image
+        [HttpPost]
+        [Route(uploadImages)]
+        [ResponseType(typeof(ItemViewDTO))]
+        public async Task<IHttpActionResult> UploadImages(int id, [FromBody] ItemUploadImageDTO item)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                return Ok(await repository.UploadImages(item));
+            }
+            catch (HttpException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
