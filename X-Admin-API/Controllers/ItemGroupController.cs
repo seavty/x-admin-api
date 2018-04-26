@@ -13,6 +13,8 @@ namespace X_Admin_API.Controllers
         private const string route = Helper.Helper.apiVersion + "itemgroups";
         private const string routeWithConstraint = route + "/{id:int:min(1)}";
         private const string routeWithConstraintForGetDetailForMaster = routeWithConstraint + "/items";
+        private const string uploadImages = routeWithConstraint + "/uploadimages";
+
         private ItemGroupRepository repository = null;
 
         public ItemGroupController()
@@ -136,6 +138,25 @@ namespace X_Admin_API.Controllers
         public async Task<IHttpActionResult> SearchItemsByItemGroup(int id, [FromUri] int currentPage, [FromUri] string search)
         {
             return Ok(await repository.GetDetailForMasterSearch(id, currentPage, search));
+        }
+
+
+        //-> upload image
+        [HttpPost]
+        [Route(uploadImages)]
+        [ResponseType(typeof(ItemGroupViewDTO))]
+        public async Task<IHttpActionResult> UploadImages(int id, [FromBody] ItemGroupUploadImageDTO itemGroup)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                return Ok(await repository.UploadImages(itemGroup));
+            }
+            catch (HttpException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

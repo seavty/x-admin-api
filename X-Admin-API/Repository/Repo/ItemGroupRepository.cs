@@ -181,6 +181,32 @@ namespace X_Admin_API.Repository.Repo
             
         }
 
+
+        //-> uploadimages
+        public async Task<ItemGroupViewDTO> UploadImages(ItemGroupUploadImageDTO itemGroupUploadImage)
+        {
+            tblItemGroup itemGroup = db.tblItemGroups.FirstOrDefault(r => r.itmg_Deleted == null && r.id == itemGroupUploadImage.id);
+            if (itemGroup == null)
+                throw new HttpException((int)HttpStatusCode.NotFound, "This record does not exsists or has been deleted");
+            using (var transaction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    List<sm_doc> documents = await DocumentHelper.SaveUploadImage(db, ConstantHelper.document_ItemGroupTableID, itemGroupUploadImage.id, itemGroupUploadImage.base64s);
+                    transaction.Commit();
+
+                    return await SelectByID(itemGroup.id);
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+
+
         //-- private function --//
 
         //-> ListingForMasterDetail

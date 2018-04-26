@@ -276,6 +276,7 @@
     <Compile Include="Models\DTO\ItemGroup\ItemGroupEditDTO.cs" />
     <Compile Include="Models\DTO\ItemGroup\ItemGroupListDTO.cs" />
     <Compile Include="Models\DTO\ItemGroup\ItemGroupNewDTO.cs" />
+    <Compile Include="Models\DTO\ItemGroup\ItemGroupUploadImageDTO.cs" />
     <Compile Include="Models\DTO\ItemGroup\ItemGroupViewDTO.cs" />
     <Compile Include="Models\DTO\ItemGroup\ItemGroupDTO.cs" />
     <Compile Include="Models\DTO\Item\ItemBase.cs" />

@@ -8,5 +8,6 @@ namespace X_Admin_API.Helper
     public class ConstantHelper
     {
         public static readonly int document_ItemTableID = 15;
+        public static readonly int document_ItemGroupTableID = 16;
     }
 }
