@@ -43,6 +43,7 @@
           <Property Name="sett_ExRate" Type="numeric" Precision="18" Scale="6" />
           <Property Name="sett_WarehouseID" Type="int" />
           <Property Name="sett_CustomerlastPrice" Type="nvarchar" MaxLength="20" />
+          <Property Name="sett_useSalesman" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sys_user">
           <Key>
@@ -62,6 +63,7 @@
           <Property Name="user_SID" Type="nvarchar" MaxLength="255" />
           <Property Name="user_Gender" Type="nvarchar" MaxLength="20" />
           <Property Name="user_Token" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_SalesmanID" Type="int" />
         </EntityType>
         <EntityType Name="tblCustomer">
           <Key>
@@ -88,6 +90,83 @@
           <Property Name="cust_Phone2" Type="nvarchar" MaxLength="50" />
           <Property Name="cust_PriceListID" Type="int" />
           <Property Name="cust_Zone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblInvoice">
+          <Key>
+            <PropertyRef Name="invo_InvoiceID" />
+          </Key>
+          <Property Name="invo_InvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="invo_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="invo_CreatedBy" Type="int" />
+          <Property Name="invo_CreatedDate" Type="datetime" />
+          <Property Name="invo_UpdatedBy" Type="int" />
+          <Property Name="invo_UpdatedDate" Type="datetime" />
+          <Property Name="invo_ZoneID" Type="int" />
+          <Property Name="invo_WorkflowID" Type="int" />
+          <Property Name="invo_WorkflowItemID" Type="int" />
+          <Property Name="invo_CustomerID" Type="int" />
+          <Property Name="invo_Date" Type="datetime" />
+          <Property Name="invo_Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="invo_Disc" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Discount" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_DiscountAmount" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_OpportunityID" Type="int" />
+          <Property Name="invo_QuotationID" Type="int" />
+          <Property Name="invo_Remark" Type="nvarchar" MaxLength="2000" />
+          <Property Name="invo_SubTotal" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Total" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Balance" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_PaidAmount" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_WarehouseID" Type="int" />
+          <Property Name="invo_isTax" Type="nvarchar" MaxLength="20" />
+          <Property Name="invo_Tax" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_GTotal" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_SaleOrderID" Type="int" />
+          <Property Name="invo_CashIn" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_CashIn2" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_ExRate" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_isPaid" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_ViewDetail" Type="nvarchar" MaxLength="20" />
+          <Property Name="invo_Deposit" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_PaymentTerm" Type="nvarchar" MaxLength="255" />
+          <Property Name="invo_Cost" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_MobileSaleID" Type="int" />
+          <Property Name="invo_SalesmanID" Type="int" />
+          <Property Name="invo_PriceListID" Type="int" />
+          <Property Name="invo_Salesman" Type="nvarchar" MaxLength="100" />
+          <Property Name="invo_SalesmanPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_Company" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_CreditNote" Type="numeric" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="tblInvoiceItem">
+          <Key>
+            <PropertyRef Name="init_InvoiceItemID" />
+          </Key>
+          <Property Name="init_InvoiceItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="init_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="init_CreatedBy" Type="int" />
+          <Property Name="init_CreatedDate" Type="datetime" />
+          <Property Name="init_UpdatedBy" Type="int" />
+          <Property Name="init_UpdatedDate" Type="datetime" />
+          <Property Name="init_ZoneID" Type="int" />
+          <Property Name="init_WorkflowID" Type="int" />
+          <Property Name="init_WorkflowItemID" Type="int" />
+          <Property Name="init_Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="init_Price" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="init_Qty" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="init_InvoiceID" Type="int" />
+          <Property Name="init_Total" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="init_ItemID" Type="int" />
+          <Property Name="init_RPrice" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="init_RQty" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="init_BQty" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="init_Cost" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="init_LastCost" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="init_WarehouseID" Type="int" />
+          <Property Name="init_Unit" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblItem">
           <Key>
@@ -231,17 +310,220 @@
           <Property Name="ware_Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ware_Address" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TH.dbo.vInvoice' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vInvoice">
+          <Key>
+            <PropertyRef Name="invo_InvoiceID" />
+          </Key>
+          <Property Name="Aging" Type="int" />
+          <Property Name="invoDate" Type="date" />
+          <Property Name="invo_InvoiceID" Type="int" Nullable="false" />
+          <Property Name="invo_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="invo_CreatedBy" Type="int" />
+          <Property Name="invo_CreatedDate" Type="datetime" />
+          <Property Name="invo_UpdatedBy" Type="int" />
+          <Property Name="invo_UpdatedDate" Type="datetime" />
+          <Property Name="invo_ZoneID" Type="int" />
+          <Property Name="invo_WorkflowID" Type="int" />
+          <Property Name="invo_WorkflowItemID" Type="int" />
+          <Property Name="invo_CustomerID" Type="int" />
+          <Property Name="invo_Date" Type="datetime" />
+          <Property Name="invo_Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="invo_Disc" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Discount" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_DiscountAmount" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_OpportunityID" Type="int" />
+          <Property Name="invo_QuotationID" Type="int" />
+          <Property Name="invo_Remark" Type="nvarchar" MaxLength="2000" />
+          <Property Name="invo_SubTotal" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Total" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Balance" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_PaidAmount" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_WarehouseID" Type="int" />
+          <Property Name="invo_isTax" Type="nvarchar" MaxLength="20" />
+          <Property Name="invo_Tax" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_GTotal" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_SaleOrderID" Type="int" />
+          <Property Name="invo_CashIn" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_CashIn2" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_ExRate" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_isPaid" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_ViewDetail" Type="nvarchar" MaxLength="20" />
+          <Property Name="invo_Deposit" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_PaymentTerm" Type="nvarchar" MaxLength="255" />
+          <Property Name="invo_Cost" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="invo_MobileSaleID" Type="int" />
+          <Property Name="invo_SalesmanID" Type="int" />
+          <Property Name="invo_PriceListID" Type="int" />
+          <Property Name="invo_Salesman" Type="nvarchar" MaxLength="100" />
+          <Property Name="invo_SalesmanPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_Company" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="invo_CreditNote" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="cust_CustomerID" Type="int" />
+          <Property Name="cust_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_CreatedBy" Type="int" />
+          <Property Name="cust_CreatedDate" Type="datetime" />
+          <Property Name="cust_UpdatedBy" Type="int" />
+          <Property Name="cust_UpdatedDate" Type="datetime" />
+          <Property Name="cust_ZoneID" Type="int" />
+          <Property Name="cust_WorkflowID" Type="int" />
+          <Property Name="cust_WorkflowItemID" Type="int" />
+          <Property Name="cust_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="cust_Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Parent" Type="int" />
+          <Property Name="cust_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Address" Type="nvarchar" MaxLength="1000" />
+          <Property Name="cust_LastTransDate" Type="datetime" />
+          <Property Name="cust_NOI" Type="int" />
+          <Property Name="cust_Phone2" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_PriceListID" Type="int" />
+          <Property Name="cust_Zone" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_userID" Type="int" />
+          <Property Name="user_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="user_CreatedBy" Type="int" />
+          <Property Name="user_CreatedDate" Type="datetime" />
+          <Property Name="user_UpdatedBy" Type="int" />
+          <Property Name="user_UpdatedDate" Type="datetime" />
+          <Property Name="user_ZoneID" Type="int" />
+          <Property Name="user_userName" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_SID" Type="nvarchar" MaxLength="255" />
+          <Property Name="user_Gender" Type="nvarchar" MaxLength="20" />
+          <Property Name="salm_SalesmanID" Type="int" />
+          <Property Name="salm_Deleted" Type="nvarchar" MaxLength="1" />
+          <Property Name="salm_CreatedBy" Type="int" />
+          <Property Name="salm_CreatedDate" Type="datetime" />
+          <Property Name="salm_UpdatedBy" Type="int" />
+          <Property Name="salm_UpdatedDate" Type="datetime" />
+          <Property Name="salm_WorkflowID" Type="int" />
+          <Property Name="salm_WorkflowItemID" Type="int" />
+          <Property Name="salm_ZoneID" Type="int" />
+          <Property Name="salm_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="salm_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="salm_ParentID" Type="int" />
+          <Property Name="salm_Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="salm_CompanyPhone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityContainer Name="XDBModelStoreContainer">
           <EntitySet Name="sm_doc" EntityType="Self.sm_doc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sys_setting" EntityType="Self.sys_setting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sys_user" EntityType="Self.sys_user" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInvoiceItem" EntityType="Self.tblInvoiceItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblItem" EntityType="Self.tblItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblItemGroup" EntityType="Self.tblItemGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblItemWarehouse" EntityType="Self.tblItemWarehouse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSaleOrder" EntityType="Self.tblSaleOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSaleOrderItem" EntityType="Self.tblSaleOrderItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblWarehouse" EntityType="Self.tblWarehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vInvoice" EntityType="Self.vInvoice" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vInvoice].[Aging] AS [Aging], 
+    [vInvoice].[invoDate] AS [invoDate], 
+    [vInvoice].[invo_InvoiceID] AS [invo_InvoiceID], 
+    [vInvoice].[invo_Deleted] AS [invo_Deleted], 
+    [vInvoice].[invo_CreatedBy] AS [invo_CreatedBy], 
+    [vInvoice].[invo_CreatedDate] AS [invo_CreatedDate], 
+    [vInvoice].[invo_UpdatedBy] AS [invo_UpdatedBy], 
+    [vInvoice].[invo_UpdatedDate] AS [invo_UpdatedDate], 
+    [vInvoice].[invo_ZoneID] AS [invo_ZoneID], 
+    [vInvoice].[invo_WorkflowID] AS [invo_WorkflowID], 
+    [vInvoice].[invo_WorkflowItemID] AS [invo_WorkflowItemID], 
+    [vInvoice].[invo_CustomerID] AS [invo_CustomerID], 
+    [vInvoice].[invo_Date] AS [invo_Date], 
+    [vInvoice].[invo_Description] AS [invo_Description], 
+    [vInvoice].[invo_Disc] AS [invo_Disc], 
+    [vInvoice].[invo_Discount] AS [invo_Discount], 
+    [vInvoice].[invo_DiscountAmount] AS [invo_DiscountAmount], 
+    [vInvoice].[invo_Name] AS [invo_Name], 
+    [vInvoice].[invo_OpportunityID] AS [invo_OpportunityID], 
+    [vInvoice].[invo_QuotationID] AS [invo_QuotationID], 
+    [vInvoice].[invo_Remark] AS [invo_Remark], 
+    [vInvoice].[invo_SubTotal] AS [invo_SubTotal], 
+    [vInvoice].[invo_Total] AS [invo_Total], 
+    [vInvoice].[invo_Balance] AS [invo_Balance], 
+    [vInvoice].[invo_PaidAmount] AS [invo_PaidAmount], 
+    [vInvoice].[invo_Status] AS [invo_Status], 
+    [vInvoice].[invo_WarehouseID] AS [invo_WarehouseID], 
+    [vInvoice].[invo_isTax] AS [invo_isTax], 
+    [vInvoice].[invo_Tax] AS [invo_Tax], 
+    [vInvoice].[invo_GTotal] AS [invo_GTotal], 
+    [vInvoice].[invo_SaleOrderID] AS [invo_SaleOrderID], 
+    [vInvoice].[invo_CashIn] AS [invo_CashIn], 
+    [vInvoice].[invo_CashIn2] AS [invo_CashIn2], 
+    [vInvoice].[invo_ExRate] AS [invo_ExRate], 
+    [vInvoice].[invo_isPaid] AS [invo_isPaid], 
+    [vInvoice].[invo_ViewDetail] AS [invo_ViewDetail], 
+    [vInvoice].[invo_Deposit] AS [invo_Deposit], 
+    [vInvoice].[invo_PaymentTerm] AS [invo_PaymentTerm], 
+    [vInvoice].[invo_Cost] AS [invo_Cost], 
+    [vInvoice].[invo_MobileSaleID] AS [invo_MobileSaleID], 
+    [vInvoice].[invo_SalesmanID] AS [invo_SalesmanID], 
+    [vInvoice].[invo_PriceListID] AS [invo_PriceListID], 
+    [vInvoice].[invo_Salesman] AS [invo_Salesman], 
+    [vInvoice].[invo_SalesmanPhone] AS [invo_SalesmanPhone], 
+    [vInvoice].[invo_Company] AS [invo_Company], 
+    [vInvoice].[invo_Province] AS [invo_Province], 
+    [vInvoice].[invo_CreditNote] AS [invo_CreditNote], 
+    [vInvoice].[cust_CustomerID] AS [cust_CustomerID], 
+    [vInvoice].[cust_Name] AS [cust_Name], 
+    [vInvoice].[cust_CreatedBy] AS [cust_CreatedBy], 
+    [vInvoice].[cust_CreatedDate] AS [cust_CreatedDate], 
+    [vInvoice].[cust_UpdatedBy] AS [cust_UpdatedBy], 
+    [vInvoice].[cust_UpdatedDate] AS [cust_UpdatedDate], 
+    [vInvoice].[cust_ZoneID] AS [cust_ZoneID], 
+    [vInvoice].[cust_WorkflowID] AS [cust_WorkflowID], 
+    [vInvoice].[cust_WorkflowItemID] AS [cust_WorkflowItemID], 
+    [vInvoice].[cust_Deleted] AS [cust_Deleted], 
+    [vInvoice].[cust_Phone] AS [cust_Phone], 
+    [vInvoice].[cust_Email] AS [cust_Email], 
+    [vInvoice].[cust_Type] AS [cust_Type], 
+    [vInvoice].[cust_Parent] AS [cust_Parent], 
+    [vInvoice].[cust_Code] AS [cust_Code], 
+    [vInvoice].[cust_Address] AS [cust_Address], 
+    [vInvoice].[cust_LastTransDate] AS [cust_LastTransDate], 
+    [vInvoice].[cust_NOI] AS [cust_NOI], 
+    [vInvoice].[cust_Phone2] AS [cust_Phone2], 
+    [vInvoice].[cust_PriceListID] AS [cust_PriceListID], 
+    [vInvoice].[cust_Zone] AS [cust_Zone], 
+    [vInvoice].[user_userID] AS [user_userID], 
+    [vInvoice].[user_Deleted] AS [user_Deleted], 
+    [vInvoice].[user_CreatedBy] AS [user_CreatedBy], 
+    [vInvoice].[user_CreatedDate] AS [user_CreatedDate], 
+    [vInvoice].[user_UpdatedBy] AS [user_UpdatedBy], 
+    [vInvoice].[user_UpdatedDate] AS [user_UpdatedDate], 
+    [vInvoice].[user_ZoneID] AS [user_ZoneID], 
+    [vInvoice].[user_userName] AS [user_userName], 
+    [vInvoice].[user_Password] AS [user_Password], 
+    [vInvoice].[user_LastName] AS [user_LastName], 
+    [vInvoice].[user_FirstName] AS [user_FirstName], 
+    [vInvoice].[user_SID] AS [user_SID], 
+    [vInvoice].[user_Gender] AS [user_Gender], 
+    [vInvoice].[salm_SalesmanID] AS [salm_SalesmanID], 
+    [vInvoice].[salm_Deleted] AS [salm_Deleted], 
+    [vInvoice].[salm_CreatedBy] AS [salm_CreatedBy], 
+    [vInvoice].[salm_CreatedDate] AS [salm_CreatedDate], 
+    [vInvoice].[salm_UpdatedBy] AS [salm_UpdatedBy], 
+    [vInvoice].[salm_UpdatedDate] AS [salm_UpdatedDate], 
+    [vInvoice].[salm_WorkflowID] AS [salm_WorkflowID], 
+    [vInvoice].[salm_WorkflowItemID] AS [salm_WorkflowItemID], 
+    [vInvoice].[salm_ZoneID] AS [salm_ZoneID], 
+    [vInvoice].[salm_Name] AS [salm_Name], 
+    [vInvoice].[salm_Code] AS [salm_Code], 
+    [vInvoice].[salm_ParentID] AS [salm_ParentID], 
+    [vInvoice].[salm_Phone] AS [salm_Phone], 
+    [vInvoice].[salm_CompanyPhone] AS [salm_CompanyPhone]
+    FROM [dbo].[vInvoice] AS [vInvoice]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -258,6 +540,9 @@
           <EntitySet Name="sm_doc" EntityType="XDBModel.sm_doc" />
           <EntitySet Name="tblSaleOrders" EntityType="XDBModel.tblSaleOrder" />
           <EntitySet Name="tblSaleOrderItems" EntityType="XDBModel.tblSaleOrderItem" />
+          <EntitySet Name="tblInvoices" EntityType="XDBModel.tblInvoice" />
+          <EntitySet Name="tblInvoiceItems" EntityType="XDBModel.tblInvoiceItem" />
+          <EntitySet Name="vInvoices" EntityType="XDBModel.vInvoice" />
         </EntityContainer>
         <EntityType Name="tblCustomer">
           <Key>
@@ -351,6 +636,7 @@
           <Property Name="user_SID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="user_SalesmanID" Type="Int32" />
         </EntityType>
         <EntityType Name="tblItemWarehouse">
           <Key>
@@ -406,6 +692,7 @@
           <Property Name="sett_ExRate" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="warehouseID" Type="Int32" />
           <Property Name="sett_CustomerlastPrice" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="sett_useSalesman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sm_doc">
           <Key>
@@ -484,6 +771,183 @@
           <Property Name="soit_RemainQty" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="soit_WarehouseID" Type="Int32" />
           <Property Name="soit_Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblInvoice">
+          <Key>
+            <PropertyRef Name="invo_InvoiceID" />
+          </Key>
+          <Property Name="invo_InvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="invo_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="invo_CreatedBy" Type="Int32" />
+          <Property Name="invo_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="invo_UpdatedBy" Type="Int32" />
+          <Property Name="invo_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="invo_ZoneID" Type="Int32" />
+          <Property Name="invo_WorkflowID" Type="Int32" />
+          <Property Name="invo_WorkflowItemID" Type="Int32" />
+          <Property Name="invo_CustomerID" Type="Int32" />
+          <Property Name="invo_Date" Type="DateTime" Precision="3" />
+          <Property Name="invo_Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Disc" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Discount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_DiscountAmount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_OpportunityID" Type="Int32" />
+          <Property Name="invo_QuotationID" Type="Int32" />
+          <Property Name="invo_Remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="invo_SubTotal" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Total" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Balance" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_PaidAmount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_WarehouseID" Type="Int32" />
+          <Property Name="invo_isTax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Tax" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_GTotal" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_SaleOrderID" Type="Int32" />
+          <Property Name="invo_CashIn" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_CashIn2" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_ExRate" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_isPaid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_ViewDetail" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Deposit" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_PaymentTerm" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Cost" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_MobileSaleID" Type="Int32" />
+          <Property Name="invo_SalesmanID" Type="Int32" />
+          <Property Name="invo_PriceListID" Type="Int32" />
+          <Property Name="invo_Salesman" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="invo_SalesmanPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_CreditNote" Type="Decimal" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="tblInvoiceItem">
+          <Key>
+            <PropertyRef Name="init_InvoiceItemID" />
+          </Key>
+          <Property Name="init_InvoiceItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="init_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="init_CreatedBy" Type="Int32" />
+          <Property Name="init_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="init_UpdatedBy" Type="Int32" />
+          <Property Name="init_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="init_ZoneID" Type="Int32" />
+          <Property Name="init_WorkflowID" Type="Int32" />
+          <Property Name="init_WorkflowItemID" Type="Int32" />
+          <Property Name="init_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="init_Price" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="init_Qty" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="init_InvoiceID" Type="Int32" />
+          <Property Name="init_Total" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="init_ItemID" Type="Int32" />
+          <Property Name="init_RPrice" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="init_RQty" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="init_BQty" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="init_Cost" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="init_LastCost" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="init_WarehouseID" Type="Int32" />
+          <Property Name="init_Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vInvoice">
+          <Key>
+            <PropertyRef Name="invo_InvoiceID" />
+          </Key>
+          <Property Name="Aging" Type="Int32" />
+          <Property Name="invoDate" Type="DateTime" Precision="0" />
+          <Property Name="invo_InvoiceID" Type="Int32" Nullable="false" />
+          <Property Name="invo_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="invo_CreatedBy" Type="Int32" />
+          <Property Name="invo_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="invo_UpdatedBy" Type="Int32" />
+          <Property Name="invo_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="invo_ZoneID" Type="Int32" />
+          <Property Name="invo_WorkflowID" Type="Int32" />
+          <Property Name="invo_WorkflowItemID" Type="Int32" />
+          <Property Name="invo_CustomerID" Type="Int32" />
+          <Property Name="invo_Date" Type="DateTime" Precision="3" />
+          <Property Name="invo_Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Disc" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Discount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_DiscountAmount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_OpportunityID" Type="Int32" />
+          <Property Name="invo_QuotationID" Type="Int32" />
+          <Property Name="invo_Remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="invo_SubTotal" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Total" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Balance" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_PaidAmount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_WarehouseID" Type="Int32" />
+          <Property Name="invo_isTax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Tax" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_GTotal" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_SaleOrderID" Type="Int32" />
+          <Property Name="invo_CashIn" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_CashIn2" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_ExRate" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_isPaid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_ViewDetail" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Deposit" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_PaymentTerm" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Cost" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="invo_MobileSaleID" Type="Int32" />
+          <Property Name="invo_SalesmanID" Type="Int32" />
+          <Property Name="invo_PriceListID" Type="Int32" />
+          <Property Name="invo_Salesman" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="invo_SalesmanPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invo_CreditNote" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="cust_CustomerID" Type="Int32" />
+          <Property Name="cust_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_CreatedBy" Type="Int32" />
+          <Property Name="cust_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="cust_UpdatedBy" Type="Int32" />
+          <Property Name="cust_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="cust_ZoneID" Type="Int32" />
+          <Property Name="cust_WorkflowID" Type="Int32" />
+          <Property Name="cust_WorkflowItemID" Type="Int32" />
+          <Property Name="cust_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="cust_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_Parent" Type="Int32" />
+          <Property Name="cust_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="cust_LastTransDate" Type="DateTime" Precision="3" />
+          <Property Name="cust_NOI" Type="Int32" />
+          <Property Name="cust_Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cust_PriceListID" Type="Int32" />
+          <Property Name="cust_Zone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_userID" Type="Int32" />
+          <Property Name="user_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="user_CreatedBy" Type="Int32" />
+          <Property Name="user_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="user_UpdatedBy" Type="Int32" />
+          <Property Name="user_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="user_ZoneID" Type="Int32" />
+          <Property Name="user_userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_SID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="user_Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="salm_SalesmanID" Type="Int32" />
+          <Property Name="salm_Deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="salm_CreatedBy" Type="Int32" />
+          <Property Name="salm_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="salm_UpdatedBy" Type="Int32" />
+          <Property Name="salm_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="salm_WorkflowID" Type="Int32" />
+          <Property Name="salm_WorkflowItemID" Type="Int32" />
+          <Property Name="salm_ZoneID" Type="Int32" />
+          <Property Name="salm_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="salm_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="salm_ParentID" Type="Int32" />
+          <Property Name="salm_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="salm_CompanyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -571,6 +1035,7 @@
           <EntitySetMapping Name="sys_user">
             <EntityTypeMapping TypeName="XDBModel.sys_user">
               <MappingFragment StoreEntitySet="sys_user">
+                <ScalarProperty Name="user_SalesmanID" ColumnName="user_SalesmanID" />
                 <ScalarProperty Name="token" ColumnName="user_Token" />
                 <ScalarProperty Name="gender" ColumnName="user_Gender" />
                 <ScalarProperty Name="user_SID" ColumnName="user_SID" />
@@ -628,6 +1093,7 @@
           <EntitySetMapping Name="sys_setting">
             <EntityTypeMapping TypeName="XDBModel.sys_setting">
               <MappingFragment StoreEntitySet="sys_setting">
+                <ScalarProperty Name="sett_useSalesman" ColumnName="sett_useSalesman" />
                 <ScalarProperty Name="sett_CustomerlastPrice" ColumnName="sett_CustomerlastPrice" />
                 <ScalarProperty Name="warehouseID" ColumnName="sett_WarehouseID" />
                 <ScalarProperty Name="sett_ExRate" ColumnName="sett_ExRate" />
@@ -724,6 +1190,186 @@
                 <ScalarProperty Name="soit_CreatedBy" ColumnName="soit_CreatedBy" />
                 <ScalarProperty Name="soit_Deleted" ColumnName="soit_Deleted" />
                 <ScalarProperty Name="id" ColumnName="soit_SaleOrderItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInvoices">
+            <EntityTypeMapping TypeName="XDBModel.tblInvoice">
+              <MappingFragment StoreEntitySet="tblInvoice">
+                <ScalarProperty Name="invo_CreditNote" ColumnName="invo_CreditNote" />
+                <ScalarProperty Name="invo_Province" ColumnName="invo_Province" />
+                <ScalarProperty Name="invo_Company" ColumnName="invo_Company" />
+                <ScalarProperty Name="invo_SalesmanPhone" ColumnName="invo_SalesmanPhone" />
+                <ScalarProperty Name="invo_Salesman" ColumnName="invo_Salesman" />
+                <ScalarProperty Name="invo_PriceListID" ColumnName="invo_PriceListID" />
+                <ScalarProperty Name="invo_SalesmanID" ColumnName="invo_SalesmanID" />
+                <ScalarProperty Name="invo_MobileSaleID" ColumnName="invo_MobileSaleID" />
+                <ScalarProperty Name="invo_Cost" ColumnName="invo_Cost" />
+                <ScalarProperty Name="invo_PaymentTerm" ColumnName="invo_PaymentTerm" />
+                <ScalarProperty Name="invo_Deposit" ColumnName="invo_Deposit" />
+                <ScalarProperty Name="invo_ViewDetail" ColumnName="invo_ViewDetail" />
+                <ScalarProperty Name="invo_isPaid" ColumnName="invo_isPaid" />
+                <ScalarProperty Name="invo_ExRate" ColumnName="invo_ExRate" />
+                <ScalarProperty Name="invo_CashIn2" ColumnName="invo_CashIn2" />
+                <ScalarProperty Name="invo_CashIn" ColumnName="invo_CashIn" />
+                <ScalarProperty Name="invo_SaleOrderID" ColumnName="invo_SaleOrderID" />
+                <ScalarProperty Name="invo_GTotal" ColumnName="invo_GTotal" />
+                <ScalarProperty Name="invo_Tax" ColumnName="invo_Tax" />
+                <ScalarProperty Name="invo_isTax" ColumnName="invo_isTax" />
+                <ScalarProperty Name="invo_WarehouseID" ColumnName="invo_WarehouseID" />
+                <ScalarProperty Name="invo_Status" ColumnName="invo_Status" />
+                <ScalarProperty Name="invo_PaidAmount" ColumnName="invo_PaidAmount" />
+                <ScalarProperty Name="invo_Balance" ColumnName="invo_Balance" />
+                <ScalarProperty Name="invo_Total" ColumnName="invo_Total" />
+                <ScalarProperty Name="invo_SubTotal" ColumnName="invo_SubTotal" />
+                <ScalarProperty Name="invo_Remark" ColumnName="invo_Remark" />
+                <ScalarProperty Name="invo_QuotationID" ColumnName="invo_QuotationID" />
+                <ScalarProperty Name="invo_OpportunityID" ColumnName="invo_OpportunityID" />
+                <ScalarProperty Name="invo_Name" ColumnName="invo_Name" />
+                <ScalarProperty Name="invo_DiscountAmount" ColumnName="invo_DiscountAmount" />
+                <ScalarProperty Name="invo_Discount" ColumnName="invo_Discount" />
+                <ScalarProperty Name="invo_Disc" ColumnName="invo_Disc" />
+                <ScalarProperty Name="invo_Description" ColumnName="invo_Description" />
+                <ScalarProperty Name="invo_Date" ColumnName="invo_Date" />
+                <ScalarProperty Name="invo_CustomerID" ColumnName="invo_CustomerID" />
+                <ScalarProperty Name="invo_WorkflowItemID" ColumnName="invo_WorkflowItemID" />
+                <ScalarProperty Name="invo_WorkflowID" ColumnName="invo_WorkflowID" />
+                <ScalarProperty Name="invo_ZoneID" ColumnName="invo_ZoneID" />
+                <ScalarProperty Name="invo_UpdatedDate" ColumnName="invo_UpdatedDate" />
+                <ScalarProperty Name="invo_UpdatedBy" ColumnName="invo_UpdatedBy" />
+                <ScalarProperty Name="invo_CreatedDate" ColumnName="invo_CreatedDate" />
+                <ScalarProperty Name="invo_CreatedBy" ColumnName="invo_CreatedBy" />
+                <ScalarProperty Name="invo_Deleted" ColumnName="invo_Deleted" />
+                <ScalarProperty Name="invo_InvoiceID" ColumnName="invo_InvoiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInvoiceItems">
+            <EntityTypeMapping TypeName="XDBModel.tblInvoiceItem">
+              <MappingFragment StoreEntitySet="tblInvoiceItem">
+                <ScalarProperty Name="init_Unit" ColumnName="init_Unit" />
+                <ScalarProperty Name="init_WarehouseID" ColumnName="init_WarehouseID" />
+                <ScalarProperty Name="init_LastCost" ColumnName="init_LastCost" />
+                <ScalarProperty Name="init_Cost" ColumnName="init_Cost" />
+                <ScalarProperty Name="init_BQty" ColumnName="init_BQty" />
+                <ScalarProperty Name="init_RQty" ColumnName="init_RQty" />
+                <ScalarProperty Name="init_RPrice" ColumnName="init_RPrice" />
+                <ScalarProperty Name="init_ItemID" ColumnName="init_ItemID" />
+                <ScalarProperty Name="init_Total" ColumnName="init_Total" />
+                <ScalarProperty Name="init_InvoiceID" ColumnName="init_InvoiceID" />
+                <ScalarProperty Name="init_Qty" ColumnName="init_Qty" />
+                <ScalarProperty Name="init_Price" ColumnName="init_Price" />
+                <ScalarProperty Name="init_Description" ColumnName="init_Description" />
+                <ScalarProperty Name="init_WorkflowItemID" ColumnName="init_WorkflowItemID" />
+                <ScalarProperty Name="init_WorkflowID" ColumnName="init_WorkflowID" />
+                <ScalarProperty Name="init_ZoneID" ColumnName="init_ZoneID" />
+                <ScalarProperty Name="init_UpdatedDate" ColumnName="init_UpdatedDate" />
+                <ScalarProperty Name="init_UpdatedBy" ColumnName="init_UpdatedBy" />
+                <ScalarProperty Name="init_CreatedDate" ColumnName="init_CreatedDate" />
+                <ScalarProperty Name="init_CreatedBy" ColumnName="init_CreatedBy" />
+                <ScalarProperty Name="init_Deleted" ColumnName="init_Deleted" />
+                <ScalarProperty Name="init_InvoiceItemID" ColumnName="init_InvoiceItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vInvoices">
+            <EntityTypeMapping TypeName="XDBModel.vInvoice">
+              <MappingFragment StoreEntitySet="vInvoice">
+                <ScalarProperty Name="salm_CompanyPhone" ColumnName="salm_CompanyPhone" />
+                <ScalarProperty Name="salm_Phone" ColumnName="salm_Phone" />
+                <ScalarProperty Name="salm_ParentID" ColumnName="salm_ParentID" />
+                <ScalarProperty Name="salm_Code" ColumnName="salm_Code" />
+                <ScalarProperty Name="salm_Name" ColumnName="salm_Name" />
+                <ScalarProperty Name="salm_ZoneID" ColumnName="salm_ZoneID" />
+                <ScalarProperty Name="salm_WorkflowItemID" ColumnName="salm_WorkflowItemID" />
+                <ScalarProperty Name="salm_WorkflowID" ColumnName="salm_WorkflowID" />
+                <ScalarProperty Name="salm_UpdatedDate" ColumnName="salm_UpdatedDate" />
+                <ScalarProperty Name="salm_UpdatedBy" ColumnName="salm_UpdatedBy" />
+                <ScalarProperty Name="salm_CreatedDate" ColumnName="salm_CreatedDate" />
+                <ScalarProperty Name="salm_CreatedBy" ColumnName="salm_CreatedBy" />
+                <ScalarProperty Name="salm_Deleted" ColumnName="salm_Deleted" />
+                <ScalarProperty Name="salm_SalesmanID" ColumnName="salm_SalesmanID" />
+                <ScalarProperty Name="user_Gender" ColumnName="user_Gender" />
+                <ScalarProperty Name="user_SID" ColumnName="user_SID" />
+                <ScalarProperty Name="user_FirstName" ColumnName="user_FirstName" />
+                <ScalarProperty Name="user_LastName" ColumnName="user_LastName" />
+                <ScalarProperty Name="user_Password" ColumnName="user_Password" />
+                <ScalarProperty Name="user_userName" ColumnName="user_userName" />
+                <ScalarProperty Name="user_ZoneID" ColumnName="user_ZoneID" />
+                <ScalarProperty Name="user_UpdatedDate" ColumnName="user_UpdatedDate" />
+                <ScalarProperty Name="user_UpdatedBy" ColumnName="user_UpdatedBy" />
+                <ScalarProperty Name="user_CreatedDate" ColumnName="user_CreatedDate" />
+                <ScalarProperty Name="user_CreatedBy" ColumnName="user_CreatedBy" />
+                <ScalarProperty Name="user_Deleted" ColumnName="user_Deleted" />
+                <ScalarProperty Name="user_userID" ColumnName="user_userID" />
+                <ScalarProperty Name="cust_Zone" ColumnName="cust_Zone" />
+                <ScalarProperty Name="cust_PriceListID" ColumnName="cust_PriceListID" />
+                <ScalarProperty Name="cust_Phone2" ColumnName="cust_Phone2" />
+                <ScalarProperty Name="cust_NOI" ColumnName="cust_NOI" />
+                <ScalarProperty Name="cust_LastTransDate" ColumnName="cust_LastTransDate" />
+                <ScalarProperty Name="cust_Address" ColumnName="cust_Address" />
+                <ScalarProperty Name="cust_Code" ColumnName="cust_Code" />
+                <ScalarProperty Name="cust_Parent" ColumnName="cust_Parent" />
+                <ScalarProperty Name="cust_Type" ColumnName="cust_Type" />
+                <ScalarProperty Name="cust_Email" ColumnName="cust_Email" />
+                <ScalarProperty Name="cust_Phone" ColumnName="cust_Phone" />
+                <ScalarProperty Name="cust_Deleted" ColumnName="cust_Deleted" />
+                <ScalarProperty Name="cust_WorkflowItemID" ColumnName="cust_WorkflowItemID" />
+                <ScalarProperty Name="cust_WorkflowID" ColumnName="cust_WorkflowID" />
+                <ScalarProperty Name="cust_ZoneID" ColumnName="cust_ZoneID" />
+                <ScalarProperty Name="cust_UpdatedDate" ColumnName="cust_UpdatedDate" />
+                <ScalarProperty Name="cust_UpdatedBy" ColumnName="cust_UpdatedBy" />
+                <ScalarProperty Name="cust_CreatedDate" ColumnName="cust_CreatedDate" />
+                <ScalarProperty Name="cust_CreatedBy" ColumnName="cust_CreatedBy" />
+                <ScalarProperty Name="cust_Name" ColumnName="cust_Name" />
+                <ScalarProperty Name="cust_CustomerID" ColumnName="cust_CustomerID" />
+                <ScalarProperty Name="invo_CreditNote" ColumnName="invo_CreditNote" />
+                <ScalarProperty Name="invo_Province" ColumnName="invo_Province" />
+                <ScalarProperty Name="invo_Company" ColumnName="invo_Company" />
+                <ScalarProperty Name="invo_SalesmanPhone" ColumnName="invo_SalesmanPhone" />
+                <ScalarProperty Name="invo_Salesman" ColumnName="invo_Salesman" />
+                <ScalarProperty Name="invo_PriceListID" ColumnName="invo_PriceListID" />
+                <ScalarProperty Name="invo_SalesmanID" ColumnName="invo_SalesmanID" />
+                <ScalarProperty Name="invo_MobileSaleID" ColumnName="invo_MobileSaleID" />
+                <ScalarProperty Name="invo_Cost" ColumnName="invo_Cost" />
+                <ScalarProperty Name="invo_PaymentTerm" ColumnName="invo_PaymentTerm" />
+                <ScalarProperty Name="invo_Deposit" ColumnName="invo_Deposit" />
+                <ScalarProperty Name="invo_ViewDetail" ColumnName="invo_ViewDetail" />
+                <ScalarProperty Name="invo_isPaid" ColumnName="invo_isPaid" />
+                <ScalarProperty Name="invo_ExRate" ColumnName="invo_ExRate" />
+                <ScalarProperty Name="invo_CashIn2" ColumnName="invo_CashIn2" />
+                <ScalarProperty Name="invo_CashIn" ColumnName="invo_CashIn" />
+                <ScalarProperty Name="invo_SaleOrderID" ColumnName="invo_SaleOrderID" />
+                <ScalarProperty Name="invo_GTotal" ColumnName="invo_GTotal" />
+                <ScalarProperty Name="invo_Tax" ColumnName="invo_Tax" />
+                <ScalarProperty Name="invo_isTax" ColumnName="invo_isTax" />
+                <ScalarProperty Name="invo_WarehouseID" ColumnName="invo_WarehouseID" />
+                <ScalarProperty Name="invo_Status" ColumnName="invo_Status" />
+                <ScalarProperty Name="invo_PaidAmount" ColumnName="invo_PaidAmount" />
+                <ScalarProperty Name="invo_Balance" ColumnName="invo_Balance" />
+                <ScalarProperty Name="invo_Total" ColumnName="invo_Total" />
+                <ScalarProperty Name="invo_SubTotal" ColumnName="invo_SubTotal" />
+                <ScalarProperty Name="invo_Remark" ColumnName="invo_Remark" />
+                <ScalarProperty Name="invo_QuotationID" ColumnName="invo_QuotationID" />
+                <ScalarProperty Name="invo_OpportunityID" ColumnName="invo_OpportunityID" />
+                <ScalarProperty Name="invo_Name" ColumnName="invo_Name" />
+                <ScalarProperty Name="invo_DiscountAmount" ColumnName="invo_DiscountAmount" />
+                <ScalarProperty Name="invo_Discount" ColumnName="invo_Discount" />
+                <ScalarProperty Name="invo_Disc" ColumnName="invo_Disc" />
+                <ScalarProperty Name="invo_Description" ColumnName="invo_Description" />
+                <ScalarProperty Name="invo_Date" ColumnName="invo_Date" />
+                <ScalarProperty Name="invo_CustomerID" ColumnName="invo_CustomerID" />
+                <ScalarProperty Name="invo_WorkflowItemID" ColumnName="invo_WorkflowItemID" />
+                <ScalarProperty Name="invo_WorkflowID" ColumnName="invo_WorkflowID" />
+                <ScalarProperty Name="invo_ZoneID" ColumnName="invo_ZoneID" />
+                <ScalarProperty Name="invo_UpdatedDate" ColumnName="invo_UpdatedDate" />
+                <ScalarProperty Name="invo_UpdatedBy" ColumnName="invo_UpdatedBy" />
+                <ScalarProperty Name="invo_CreatedDate" ColumnName="invo_CreatedDate" />
+                <ScalarProperty Name="invo_CreatedBy" ColumnName="invo_CreatedBy" />
+                <ScalarProperty Name="invo_Deleted" ColumnName="invo_Deleted" />
+                <ScalarProperty Name="invo_InvoiceID" ColumnName="invo_InvoiceID" />
+                <ScalarProperty Name="invoDate" ColumnName="invoDate" />
+                <ScalarProperty Name="Aging" ColumnName="Aging" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

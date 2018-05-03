@@ -15,6 +15,9 @@
         <EntityTypeShape EntityType="XDBModel.sm_doc" Width="1.5" PointX="6.375" PointY="5.75" />
         <EntityTypeShape EntityType="XDBModel.tblSaleOrder" Width="1.5" PointX="8.375" PointY="5.75" />
         <EntityTypeShape EntityType="XDBModel.tblSaleOrderItem" Width="1.5" PointX="10.375" PointY="5.75" />
+        <EntityTypeShape EntityType="XDBModel.tblInvoice" Width="1.5" PointX="2.625" PointY="12.75" />
+        <EntityTypeShape EntityType="XDBModel.tblInvoiceItem" Width="1.5" PointX="4.5" PointY="12.75" />
+        <EntityTypeShape EntityType="XDBModel.vInvoice" Width="1.5" PointX="6.25" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

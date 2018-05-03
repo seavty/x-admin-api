@@ -28,5 +28,6 @@ namespace X_Admin_API.Models.DB
         public string user_SID { get; set; }
         public string gender { get; set; }
         public string token { get; set; }
+        public Nullable<int> user_SalesmanID { get; set; }
     }
 }

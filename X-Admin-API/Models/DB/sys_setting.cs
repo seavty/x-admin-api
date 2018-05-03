@@ -29,5 +29,6 @@ namespace X_Admin_API.Models.DB
         public Nullable<decimal> sett_ExRate { get; set; }
         public Nullable<int> warehouseID { get; set; }
         public string sett_CustomerlastPrice { get; set; }
+        public string sett_useSalesman { get; set; }
     }
 }

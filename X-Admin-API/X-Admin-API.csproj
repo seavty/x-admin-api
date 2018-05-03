@@ -196,6 +196,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\invoiceController.cs" />
     <Compile Include="Controllers\IssueController.cs" />
     <Compile Include="Controllers\ItemGroupWithItemController.cs" />
     <Compile Include="Controllers\ReceiveController.cs" />
@@ -216,10 +217,20 @@
     </Compile>
     <Compile Include="Helper\clsGlobal.cs" />
     <Compile Include="Helper\StringHelper.cs" />
+    <Compile Include="Helper\xcrm.cs" />
+    <Compile Include="Models\DB\tblInvoice.cs">
+      <DependentUpon>XModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\tblInvoiceItem.cs">
+      <DependentUpon>XModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\tblSaleOrder.cs">
       <DependentUpon>XModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\tblSaleOrderItem.cs">
+      <DependentUpon>XModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\vInvoice.cs">
       <DependentUpon>XModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DTO\Customer\CustomerBase.cs" />
@@ -228,6 +239,11 @@
     <Compile Include="Models\DTO\Customer\CustomerNewDTO.cs" />
     <Compile Include="Models\DTO\Customer\CustomerViewDTO.cs" />
     <Compile Include="Models\DTO\Document\DocumentViewDTO.cs" />
+    <Compile Include="Models\DTO\Invoice\invoiceBase.cs" />
+    <Compile Include="Models\DTO\Invoice\invoiceDetailDTO.cs" />
+    <Compile Include="Models\DTO\Invoice\invoiceDetailListDTO.cs" />
+    <Compile Include="Models\DTO\Invoice\invoiceItemBase.cs" />
+    <Compile Include="Models\DTO\Invoice\invoiceListDTO.cs" />
     <Compile Include="Models\DTO\IssueItem\IsseItemNewDTO.cs" />
     <Compile Include="Models\DTO\IssueItem\IssueItemBase.cs" />
     <Compile Include="Models\DTO\ItemGroupWithItem\ItemGroupWithItemBase.cs" />
@@ -320,6 +336,8 @@
     <Compile Include="Repository\Interface\ISelectByID.cs" />
     <Compile Include="Repository\Interface\IUser.cs" />
     <Compile Include="Repository\Repo\CustomerRepository.cs" />
+    <Compile Include="Repository\Repo\Entities.cs" />
+    <Compile Include="Repository\Repo\invoiceRepo.cs" />
     <Compile Include="Repository\Repo\ItemGroupRepository.cs" />
     <Compile Include="Repository\Repo\ItemGroupWithItemRepository.cs" />
     <Compile Include="Repository\Repo\ItemRepository.cs" />

@@ -28,5 +28,7 @@ namespace X_Admin_API.Models.DTO.User
         public string gender { get; set; }
 
         public SettingViewDTO setting { get; set; }
+
+        public int user_SalesmanID { get; set; }
     }
 }
