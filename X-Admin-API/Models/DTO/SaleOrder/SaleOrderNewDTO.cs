@@ -16,6 +16,12 @@ namespace X_Admin_API.Models.DTO.SaleOrder
         public int warehouseID { get; set; }
 
         [Required]
+        public String discountType { get; set; }
+
+        [Required]
+        public double amount { get; set; }
+
+        [Required]
         public List<SaleOrderItemBase> items { get; set; }
     }
 }

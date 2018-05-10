@@ -69,8 +69,8 @@ namespace X_Admin_API.Controllers
                     vals.Add("sord_Date".ToLower(), DateTime.Now.ToString("dd/MM/yyyy"));
                     vals.Add("sord_CustomerID".ToLower(), saleOrder.customerID.ToString());
                     vals.Add("sord_WarehouseId".ToLower(), saleOrder.warehouseID.ToString());
-                    vals.Add("sord_Discount".ToLower(), "");
-                    vals.Add("sord_Disc".ToLower(), "");
+                    vals.Add("sord_Discount".ToLower(), saleOrder.discountType.ToString());
+                    vals.Add("sord_Disc".ToLower(), saleOrder.amount.ToString());
                     vals.Add("sord_Deposit".ToLower(), "0");
 
 
