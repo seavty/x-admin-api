@@ -208,6 +208,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ItemGroupController.cs" />
+    <Compile Include="Controllers\WarehouseController.cs" />
     <Compile Include="Helper\ConstantHelper.cs" />
     <Compile Include="Helper\DocumentHelper.cs" />
     <Compile Include="Helper\Helper.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Models\DTO\Customer\CustomerNewDTO.cs" />
     <Compile Include="Models\DTO\Customer\CustomerViewDTO.cs" />
     <Compile Include="Models\DTO\Document\DocumentViewDTO.cs" />
+    <Compile Include="Models\DTO\GetListDTO.cs" />
     <Compile Include="Models\DTO\Invoice\invoiceBase.cs" />
     <Compile Include="Models\DTO\Invoice\invoiceDetailDTO.cs" />
     <Compile Include="Models\DTO\Invoice\invoiceDetailListDTO.cs" />
@@ -346,6 +348,7 @@
     <Compile Include="Repository\Repo\SaleOrderRepository.cs" />
     <Compile Include="Repository\Repo\SlideShowRepository.cs" />
     <Compile Include="Repository\Repo\UserRepository.cs" />
+    <Compile Include="Repository\Repo\WarehouseRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
