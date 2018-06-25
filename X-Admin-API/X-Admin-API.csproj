@@ -196,6 +196,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\invoiceController.cs" />
     <Compile Include="Controllers\IssueController.cs" />
     <Compile Include="Controllers\ItemGroupWithItemController.cs" />
@@ -336,6 +337,7 @@
     <Compile Include="Repository\Interface\ISelectByID.cs" />
     <Compile Include="Repository\Interface\IUser.cs" />
     <Compile Include="Repository\Repo\CustomerRepository.cs" />
+    <Compile Include="Repository\Repo\DocumentRepository.cs" />
     <Compile Include="Repository\Repo\Entities.cs" />
     <Compile Include="Repository\Repo\invoiceRepo.cs" />
     <Compile Include="Repository\Repo\ItemGroupRepository.cs" />
