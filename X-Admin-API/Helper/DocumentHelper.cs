@@ -29,8 +29,6 @@ namespace X_Admin_API.Helper
             return documentViews;
         }
 
-
-        //-> Get SaveUploadImages to document
         public static async Task<List<sm_doc>> SaveUploadImage(THEntities db, int tableID, int recordID, List<string> base64)
         {
             List<sm_doc> documents = new List<sm_doc>();
@@ -44,27 +42,19 @@ namespace X_Admin_API.Helper
                         using (Bitmap bm = new Bitmap(ms))
                         {
                             string path = "";
-                            string uploadFolderName = "uploads";
-                            path = HttpContext.Current.Server.MapPath(@"~\" + uploadFolderName);
+                            string year = DateTime.Now.Year.ToString();
+                            string month = DateTime.Now.Month > 9 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month;
+                            path = ConstantHelper.UPLOAD_FOLDER + @"\" + year + @"\" + month;
+
+                            path = HttpContext.Current.Server.MapPath(@"~\" + path);
                             if (!Directory.Exists(path))
                                 Directory.CreateDirectory(path);
 
-                            string currentYear = DateTime.Now.Year.ToString();
-                            path += @"\" + currentYear;
-                            if (!Directory.Exists(path))
-                                Directory.CreateDirectory(path);
-
-                            string currentMonth = DateTime.Now.Month > 9 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month;
-                            path += @"\" + currentMonth;
-
-                            if (!Directory.Exists(path))
-                                Directory.CreateDirectory(path);
-
-                            var createImageUniqueName = recordID + "_" + DateTime.Now.ToString("yyyy-MM-dd_HHmmssfff") + ".jpg";
+                            var createImageUniqueName = $"{tableID}_{recordID}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fff")}.jpg";
                             bm.Save(path + @"\" + createImageUniqueName);
-
-                            imageNameForSavingToDB = recordID + "_" + createImageUniqueName;
-                            pathForSavingToDB = uploadFolderName + "/" + currentYear + "/" + currentMonth + "/" + createImageUniqueName;
+                            //bm.Save(@"C:\uploads\" + createImageUniqueName);
+                            imageNameForSavingToDB = createImageUniqueName;
+                            pathForSavingToDB = $"{ConstantHelper.UPLOAD_FOLDER}/{year}/{month}/{createImageUniqueName}";
                         }
                         var document = new sm_doc();
                         document.name = imageNameForSavingToDB;
@@ -81,5 +71,56 @@ namespace X_Admin_API.Helper
             }
             return documents;
         }
+
+
+
+
+        //-> keep this one, somehow will need it in the future
+        //-> comment it dues to apply some logic
+        //-> SaveUploadImage
+        /*
+        public static async Task<List<sm_doc>> SaveUploadImage(THEntities db, int tableID, int recordID, List<string> base64)
+        {
+            List<sm_doc> documents = new List<sm_doc>();
+            if (base64 != null)
+            {
+                foreach (var image in base64)
+                {
+                    using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(image)))
+                    {
+                        string pathForSavingToDB = "", imageNameForSavingToDB = "";
+                        using (Bitmap bm = new Bitmap(ms))
+                        {
+                            string path = "";
+                            string year = DateTime.Now.Year.ToString();
+                            string month = DateTime.Now.Month > 9 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month;
+                            path = ConstantHelper.UPLOAD_FOLDER + @"\" + year + @"\" + month;
+
+                            path = HttpContext.Current.Server.MapPath(@"~\" + path);
+                            if (!Directory.Exists(path))
+                                Directory.CreateDirectory(path);
+
+                            var createImageUniqueName = $"{tableID}_{recordID}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fff")}.jpg";
+                            bm.Save(path + @"\" + createImageUniqueName);
+                            imageNameForSavingToDB = createImageUniqueName;
+                            pathForSavingToDB = $"{ConstantHelper.UPLOAD_FOLDER}/{year}/{month}/{createImageUniqueName}";
+                        }
+                        var document = new sm_doc();
+                        document.name = imageNameForSavingToDB;
+                        document.tableID = tableID;
+                        document.docs_CreatedDate = DateTime.Now;
+                        document.value = recordID.ToString();
+                        document.path = pathForSavingToDB;
+                        db.sm_doc.Add(document);
+                        await db.SaveChangesAsync();
+
+                        documents.Add(document);
+                    }
+                }
+            }
+            return documents;
+        }
+        */
+
     }
 }

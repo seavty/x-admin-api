@@ -349,6 +349,7 @@
     <Compile Include="Repository\Repo\SlideShowRepository.cs" />
     <Compile Include="Repository\Repo\UserRepository.cs" />
     <Compile Include="Repository\Repo\WarehouseRepository.cs" />
+    <Compile Include="Utils\Attribute\ErrorLoggerAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

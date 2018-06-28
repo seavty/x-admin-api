@@ -9,5 +9,8 @@ namespace X_Admin_API.Helper
     {
         public static readonly int document_ItemTableID = 15;
         public static readonly int document_ItemGroupTableID = 16;
+
+        public static readonly string LOG_FOLDER = "logs";
+        public static readonly string UPLOAD_FOLDER = "uploads";
     }
 }

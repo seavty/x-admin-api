@@ -8,6 +8,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using FluentValidation;
 using FluentValidation.Mvc;
+using X_Admin_API.Utils.Attribute;
 
 namespace X_Admin_API
 {
@@ -37,6 +38,8 @@ namespace X_Admin_API
         {
             return HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.StartsWith(WebApiConfig.UrlPrefixRelative);
         }
-        
+
+       
+
     }
 }

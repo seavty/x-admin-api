@@ -4,9 +4,11 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using X_Admin_API.Models.DTO.Item;
 using X_Admin_API.Repository.Repo;
+using X_Admin_API.Utils.Attribute;
 
 namespace X_Admin_API.Controllers
 {
+    [ErrorLoggerAttribute]
     public class ItemController : ApiController
     {
         private const string route = Helper.Helper.apiVersion + "items";
@@ -15,10 +17,12 @@ namespace X_Admin_API.Controllers
 
         private ItemRepository repository = null;
 
+        
         public ItemController()
         {
             repository = new ItemRepository();
         }
+        
 
         //-> Create New Item 
         [HttpPost]

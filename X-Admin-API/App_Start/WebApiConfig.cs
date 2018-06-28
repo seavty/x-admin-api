@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using X_Admin_API.Models;
+using X_Admin_API.Utils.Attribute;
 
 namespace X_Admin_API
 {
@@ -28,6 +29,7 @@ namespace X_Admin_API
 
             //tmp ignor authentication
             config.Filters.Add(new TokenValidationAttribute());
+            config.Filters.Add(new ErrorLoggerAttribute());
 
 
         }
