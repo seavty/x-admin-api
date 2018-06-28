@@ -8,6 +8,7 @@ using X_Admin_API.Models.DTO.Document;
 using System.Data.Entity;
 using System.IO;
 using System.Drawing;
+using System.Web.Configuration;
 
 namespace X_Admin_API.Helper
 {
@@ -23,7 +24,10 @@ namespace X_Admin_API.Helper
                                            select d;
             foreach (var document in documents)
             {
-                documentViews.Add(MappingHelper.MapDBClassToDTO<sm_doc, DocumentViewDTO>(document));
+                var mappingDTO = MappingHelper.MapDBClassToDTO<sm_doc, DocumentViewDTO>(document);
+                //documentViews.Add(MappingHelper.MapDBClassToDTO<sm_doc, DocumentViewDTO>(document));
+                mappingDTO.path = WebConfigurationManager.AppSettings["baseURL"].ToString() + mappingDTO.path; 
+                documentViews.Add(mappingDTO);
             }
 
             return documentViews;
@@ -41,18 +45,25 @@ namespace X_Admin_API.Helper
                         string pathForSavingToDB = "", imageNameForSavingToDB = "";
                         using (Bitmap bm = new Bitmap(ms))
                         {
-                            string path = "";
+                            //string path = "";
                             string year = DateTime.Now.Year.ToString();
                             string month = DateTime.Now.Month > 9 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month;
+                            /*
                             path = ConstantHelper.UPLOAD_FOLDER + @"\" + year + @"\" + month;
-
                             path = HttpContext.Current.Server.MapPath(@"~\" + path);
                             if (!Directory.Exists(path))
                                 Directory.CreateDirectory(path);
-
                             var createImageUniqueName = $"{tableID}_{recordID}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fff")}.jpg";
                             bm.Save(path + @"\" + createImageUniqueName);
-                            //bm.Save(@"C:\uploads\" + createImageUniqueName);
+                            bm.Save(@"C:\uploads\" + createImageUniqueName);
+                            */        
+                            var createImageUniqueName = $"{tableID}_{recordID}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fff")}.jpg";
+                            var uploadPath = WebConfigurationManager.AppSettings["uploadPath"].ToString();
+                            uploadPath += ConstantHelper.UPLOAD_FOLDER +  @"\" + year + @"\" + month; 
+                            if (!Directory.Exists(uploadPath))
+                                Directory.CreateDirectory(uploadPath);
+                            bm.Save(uploadPath + @"\" + createImageUniqueName);
+
                             imageNameForSavingToDB = createImageUniqueName;
                             pathForSavingToDB = $"{ConstantHelper.UPLOAD_FOLDER}/{year}/{month}/{createImageUniqueName}";
                         }
