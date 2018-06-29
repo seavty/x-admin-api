@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using X_Admin_API.Models.DTO;
 using X_Admin_API.Models.DTO.ItemGroupWithItem;
 using X_Admin_API.Repository.Repo;
 
@@ -21,7 +22,7 @@ namespace X_Admin_API.Controllers
         //-> ItemGroupWithItem List
         [HttpGet]
         [Route(route)]
-        [ResponseType(typeof(ItemGroupWithItemListDTO))]
+        [ResponseType(typeof(GetListDTO<ItemGroupWithItemViewDTO>))]
         public async Task<IHttpActionResult> Get([FromUri] int currentPage)
         {
             return Ok(await repository.GetMasterDetailList(currentPage));

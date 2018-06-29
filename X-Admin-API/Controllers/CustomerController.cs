@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using X_Admin_API.Models.DTO;
 using X_Admin_API.Models.DTO.Customer;
 using X_Admin_API.Repository;
 
@@ -93,7 +94,7 @@ namespace X_Admin_API.Controllers
         //-> Customer List
         [HttpGet]
         [Route(route)]
-        [ResponseType(typeof(CustomerListDTO))]
+        [ResponseType(typeof(GetListDTO<CustomerViewDTO>))]
         public async Task<IHttpActionResult> Get([FromUri] int currentPage)
         {
             return Ok(await repository.GetList(currentPage));
@@ -102,7 +103,7 @@ namespace X_Admin_API.Controllers
         //-> Search Customer
         [HttpGet]
         [Route(route)]
-        [ResponseType(typeof(CustomerListDTO))]
+        [ResponseType(typeof(GetListDTO<CustomerViewDTO>))]
         public async Task<IHttpActionResult> Search([FromUri] int currentPage, [FromUri] string search)
         {
             return Ok(await repository.Search(currentPage, search));

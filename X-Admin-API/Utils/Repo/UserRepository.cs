@@ -2,7 +2,6 @@
 using System.Web;
 using X_Admin_API.Models.DB;
 using X_Admin_API.Models.DTO.Customer;
-using X_Admin_API.Repository.Interface;
 using System.Threading.Tasks;
 using X_Admin_API.Models.DTO.User;
 using System.Net;
@@ -12,7 +11,7 @@ using X_Admin_API.Models.DTO.Warehouse;
 
 namespace X_Admin_API.Repository.Repo
 {
-    public class UserRepository : IUser
+    public class UserRepository
     {
         private THEntities db = null;
 

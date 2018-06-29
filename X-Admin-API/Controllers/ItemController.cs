@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using X_Admin_API.Models.DTO;
 using X_Admin_API.Models.DTO.Item;
 using X_Admin_API.Repository.Repo;
 using X_Admin_API.Utils.Attribute;
@@ -14,16 +15,13 @@ namespace X_Admin_API.Controllers
         private const string route = Helper.Helper.apiVersion + "items";
         private const string routeWithConstraint = route + "/{id:int:min(1)}";
         private const string uploadImages = routeWithConstraint + "/uploadimages";
-
         private ItemRepository repository = null;
 
-        
         public ItemController()
         {
             repository = new ItemRepository();
         }
         
-
         //-> Create New Item 
         [HttpPost]
         [Route(route)]
@@ -99,7 +97,7 @@ namespace X_Admin_API.Controllers
         //-> Item List
         [HttpGet]
         [Route(route)]
-        [ResponseType(typeof(ItemListDTO))]
+        [ResponseType(typeof(GetListDTO<ItemViewDTO>))]
         public async Task<IHttpActionResult> Get([FromUri] int currentPage)
         {
             return Ok(await repository.GetList(currentPage));
@@ -108,12 +106,11 @@ namespace X_Admin_API.Controllers
         //-> Search Item
         [HttpGet]
         [Route(route)]
-        [ResponseType(typeof(ItemListDTO))]
+        [ResponseType(typeof(GetListDTO<ItemViewDTO>))]
         public async Task<IHttpActionResult> Search([FromUri] int currentPage, [FromUri] string search)
         {
             return Ok(await repository.Search(currentPage, search));
         }
-
 
         //-> upload image
         [HttpPost]

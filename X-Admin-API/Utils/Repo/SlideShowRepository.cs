@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 using System.Web;
 using X_Admin_API.Models.DB;
 using X_Admin_API.Models.DTO.SlideShow;
-using X_Admin_API.Repository.Interface;
 
 namespace X_Admin_API.Repository.Repo
 {
-    public class SlideShowRepository : ICreate<SlideShowNewDTO, SlideShowListDTO>,
-                                       ISelectByID<SlideShowListDTO>
+    public class SlideShowRepository 
     {
         private THEntities db = null;
 

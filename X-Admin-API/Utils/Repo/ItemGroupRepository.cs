@@ -4,24 +4,16 @@ using System.Data.Entity;
 using System.Linq;
 using X_Admin_API.Models.DB;
 using X_Admin_API.Models.DTO.ItemGroup;
-using X_Admin_API.Repository.Interface;
 using System.Threading.Tasks;
 using X_Admin_API.Helper;
 using X_Admin_API.Models.DTO.Item;
 using System.Web;
 using System.Net;
+using X_Admin_API.Models.DTO;
 
 namespace X_Admin_API.Repository.Repo
 {
-
-    public class ItemGroupRepository : ICreate<ItemGroupNewDTO, ItemGroupViewDTO>,
-                                       ISelectByID<ItemGroupViewDTO>,
-                                       IEdit<ItemGroupEditDTO, ItemGroupViewDTO>,
-                                       IDelete,
-                                       IGetList<ItemGroupListDTO>,
-                                       ISearch<ItemGroupListDTO>,
-                                       IGetDetailForMaster<ItemListForMasterDTO>,
-                                       IGetDetailForMasterSearch<ItemListForMasterDTO>
+    public class ItemGroupRepository 
     {
         private THEntities db = null;
 
@@ -131,7 +123,7 @@ namespace X_Admin_API.Repository.Repo
         }
 
         //-> GetList
-        public async Task<ItemGroupListDTO> GetList(int currentPage)
+        public async Task<GetListDTO<ItemGroupViewDTO>> GetList(int currentPage)
         {
             /*
             IQueryable<tblItemGroup> itemGroups = from g in db.tblItemGroups
@@ -147,7 +139,7 @@ namespace X_Admin_API.Repository.Repo
         }
 
         //-> Search
-        public async Task<ItemGroupListDTO> Search(int currentPage, string search)
+        public async Task<GetListDTO<ItemGroupViewDTO>> Search(int currentPage, string search)
         {
             IQueryable<tblItemGroup> itemGroups = from g in db.tblItemGroups
                                                   where g.itmg_Deleted == null && g.name.Contains(search)
@@ -158,7 +150,7 @@ namespace X_Admin_API.Repository.Repo
 
 
         //-- item list for master
-        public async Task<ItemListForMasterDTO> GetDetailForMaster(int masterID, int currentPage)
+        public async Task<GetListDTO<ItemViewForMasterDTO>> GetDetailForMaster(int masterID, int currentPage)
         {
             var items = from i in db.tblItems
                         join d in db.sm_doc.Where(x => x.docs_Deleted == null && x.tableID == Helper.Helper.document_ItemTableID)
@@ -169,7 +161,7 @@ namespace X_Admin_API.Repository.Repo
             return await ListingForMasterDetail(currentPage, items);
         }
 
-        public async Task<ItemListForMasterDTO> GetDetailForMasterSearch(int masterID, int currentPage, string search)
+        public async Task<GetListDTO<ItemViewForMasterDTO>> GetDetailForMasterSearch(int masterID, int currentPage, string search)
         {
             var items = from i in db.tblItems
                         join d in db.sm_doc.Where(x => x.docs_Deleted == null && x.tableID == Helper.Helper.document_ItemTableID)
@@ -210,7 +202,7 @@ namespace X_Admin_API.Repository.Repo
         //-- private function --//
 
         //-> ListingForMasterDetail
-        private async Task<ItemListForMasterDTO> ListingForMasterDetail(int currentPage, IQueryable<dynamic> items, string search = null)
+        private async Task<GetListDTO<ItemViewForMasterDTO>> ListingForMasterDetail(int currentPage, IQueryable<dynamic> items, string search = null)
         {
             int startRow = Helper.Helper.GetStartRow(currentPage);
             List<ItemViewForMasterDTO> itemViewForMasters = new List<ItemViewForMasterDTO>();
@@ -222,26 +214,26 @@ namespace X_Admin_API.Repository.Repo
                 itemViewForMaster.documents = Helper.Helper.GetDocuments(item.document);
                 itemViewForMasters.Add(itemViewForMaster);
             }
-            ItemListForMasterDTO itemListForMaster = new ItemListForMasterDTO();
-            itemListForMaster.metaData = await Helper.Helper.GetMetaData(currentPage, items, "name", "asc", search);
-            itemListForMaster.results = itemViewForMasters;
-            return itemListForMaster;
+            var getList = new GetListDTO<ItemViewForMasterDTO>();
+            getList.metaData = await Helper.Helper.GetMetaData(currentPage, items, "name", "asc", search);
+            getList.results = itemViewForMasters;
+            return getList;
         }
 
         //-> Listing
-        private async Task<ItemGroupListDTO> Listing(int currentPage, IQueryable<tblItemGroup> itemGroups, string search = null)
+        private async Task<GetListDTO<ItemGroupViewDTO>> Listing(int currentPage, IQueryable<tblItemGroup> itemGroups, string search = null)
         {
             int startRow = Helper.Helper.GetStartRow(currentPage);
-            List<ItemGroupViewDTO> itemGroupViews = new List<ItemGroupViewDTO>();
+            var myList = new List<ItemGroupViewDTO>();
             var myItemGroups = await itemGroups.Skip(startRow).Take(Helper.Helper.pageSize).ToListAsync();
             foreach (var itemGroup in myItemGroups)
             {
-                itemGroupViews.Add(await SelectByID(itemGroup.id));
+                myList.Add(await SelectByID(itemGroup.id));
             }
-            ItemGroupListDTO itemGroupList = new ItemGroupListDTO();
-            itemGroupList.metaData = await Helper.Helper.GetMetaData(currentPage, itemGroups, "name", "asc", search);
-            itemGroupList.results = itemGroupViews;
-            return itemGroupList;
+            var getList = new GetListDTO<ItemGroupViewDTO>();
+            getList.metaData = await Helper.Helper.GetMetaData(currentPage, itemGroups, "name", "asc", search);
+            getList.results = myList;
+            return getList;
         }
     }
 }

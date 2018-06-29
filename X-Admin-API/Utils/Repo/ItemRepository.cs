@@ -5,21 +5,15 @@ using System.Linq;
 using System.Web;
 using X_Admin_API.Models.DB;
 using X_Admin_API.Models.DTO.Item;
-using X_Admin_API.Repository.Interface;
 using System.Threading.Tasks;
 using X_Admin_API.Helper;
 using X_Admin_API.Models.DTO.ItemGroup;
 using System.Net;
+using X_Admin_API.Models.DTO;
 
 namespace X_Admin_API.Repository.Repo
 {
-
-    public class ItemRepository : ICreate<ItemNewDTO, ItemViewDTO>,
-                                  ISelectByID<ItemViewDTO>,
-                                  IEdit<ItemEditDTO, ItemViewDTO>,
-                                  IDelete,
-                                  IGetList<ItemListDTO>,
-                                  ISearch<ItemListDTO>
+    public class ItemRepository 
     {
         private THEntities db = null;
 
@@ -165,7 +159,7 @@ namespace X_Admin_API.Repository.Repo
         }
 
         //-> GetList
-        public async Task<ItemListDTO> GetList(int currentPage)
+        public async Task<GetListDTO<ItemViewDTO>> GetList(int currentPage)
         {
             IQueryable<tblItem> items = from i in db.tblItems
                                         where i.item_Deleted == null
@@ -175,7 +169,7 @@ namespace X_Admin_API.Repository.Repo
         }
 
         //-> Search
-        public async Task<ItemListDTO> Search(int currentPage, string search)
+        public async Task<GetListDTO<ItemViewDTO>> Search(int currentPage, string search)
         {
             IQueryable<tblItem> items = from i in db.tblItems
                                         where i.item_Deleted == null && (i.name.Contains(search) || i.code.Contains(search))
@@ -207,21 +201,20 @@ namespace X_Admin_API.Repository.Repo
             }
         }
 
-
         //*** private method ***/
-        private async Task<ItemListDTO> Listing(int currentPage, IQueryable<tblItem> items, string search = null)
+        private async Task<GetListDTO<ItemViewDTO>> Listing(int currentPage, IQueryable<tblItem> items, string search = null)
         {
             int startRow = Helper.Helper.GetStartRow(currentPage);
-            List<ItemViewDTO> itemViewForMasters = new List<ItemViewDTO>();
-            var myItems = items.Skip(startRow).Take(Helper.Helper.pageSize);
-            foreach (var item in myItems)
+            var myList = new List<ItemViewDTO>();
+            var myRecords = items.Skip(startRow).Take(Helper.Helper.pageSize);
+            foreach (var item in myRecords)
             {
-                itemViewForMasters.Add(await SelectByID(item.id));
+                myList.Add(await SelectByID(item.id));
             }
-            ItemListDTO itemList = new ItemListDTO();
-            itemList.metaData = await Helper.Helper.GetMetaData(currentPage, items, "name", "asc", search);
-            itemList.results = itemViewForMasters;
-            return itemList;
+            var getList = new GetListDTO<ItemViewDTO>();
+            getList.metaData = await Helper.Helper.GetMetaData(currentPage, items, "name", "asc", search);
+            getList.results = myList;
+            return getList;
         }
 
         private async Task SaveItemToWarehouses(tblItem item)

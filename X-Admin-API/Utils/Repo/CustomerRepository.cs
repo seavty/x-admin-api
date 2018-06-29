@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using X_Admin_API.Models.DB;
-using X_Admin_API.Repository.Interface;
 using X_Admin_API.Models.DTO.Customer;
 using System.Threading.Tasks;
 using X_Admin_API.Helper;
 using System.Web;
 using System.Net;
+using X_Admin_API.Models.DTO;
 
 namespace X_Admin_API.Repository
 {
-    public class CustomerRepository : ICreate<CustomerNewDTO, CustomerViewDTO>,
-                                      ISelectByID<CustomerViewDTO>,
-                                      IEdit<CustomerEditDTO, CustomerViewDTO>,
-                                      IDelete,
-                                      IGetList<CustomerListDTO>,
-                                      ISearch<CustomerListDTO>
+    public class CustomerRepository
     {
         private THEntities db = null;
 
@@ -82,7 +77,7 @@ namespace X_Admin_API.Repository
         }
 
         //-> GetList
-        public async Task<CustomerListDTO> GetList(int currentPage)
+        public async Task<GetListDTO<CustomerViewDTO>> GetList(int currentPage)
         {
             IQueryable<tblCustomer> customers = from r in db.tblCustomers
                                                 where r.cust_Deleted == null
@@ -92,7 +87,7 @@ namespace X_Admin_API.Repository
         }
 
         //-> Search
-        public async Task<CustomerListDTO> Search(int currentPage, string search)
+        public async Task<GetListDTO<CustomerViewDTO>> Search(int currentPage, string search)
         {
             IQueryable<tblCustomer> customers = from r in db.tblCustomers
                                                 where r.cust_Deleted == null && (r.name.Contains(search) || r.code.Contains(search))
@@ -102,19 +97,19 @@ namespace X_Admin_API.Repository
         }
 
         //-- private method --//
-        private async Task<CustomerListDTO> Listing(int currentPage, IQueryable<tblCustomer> customers, string search = null)
+        private async Task<GetListDTO<CustomerViewDTO>> Listing(int currentPage, IQueryable<tblCustomer> customers, string search = null)
         {
             int startRow = Helper.Helper.GetStartRow(currentPage);
-            var customerViewList = new List<CustomerViewDTO>();
-            var myCustomers = await customers.Skip(startRow).Take(Helper.Helper.pageSize).ToListAsync();
-            foreach (var customer in myCustomers)
+            var myList = new List<CustomerViewDTO>();
+            var myRecords = await customers.Skip(startRow).Take(Helper.Helper.pageSize).ToListAsync();
+            foreach (var record in myRecords)
             {
-                customerViewList.Add(await SelectByID(customer.id));
+                myList.Add(await SelectByID(record.id));
             }
-            CustomerListDTO customerList = new CustomerListDTO();
-            customerList.metaData = await Helper.Helper.GetMetaData(currentPage, customers, "name", "asc", search);
-            customerList.results = customerViewList;
-            return customerList;
+            var getList = new GetListDTO<CustomerViewDTO>();
+            getList.metaData = await Helper.Helper.GetMetaData(currentPage, customers, "name", "asc", search);
+            getList.results = myList;
+            return getList;
         }
     }
 }

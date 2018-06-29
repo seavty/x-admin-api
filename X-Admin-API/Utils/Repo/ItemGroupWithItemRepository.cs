@@ -3,13 +3,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using X_Admin_API.Models.DB;
+using X_Admin_API.Models.DTO;
 using X_Admin_API.Models.DTO.Item;
 using X_Admin_API.Models.DTO.ItemGroupWithItem;
-using X_Admin_API.Repository.Interface;
 
 namespace X_Admin_API.Repository.Repo
 {
-    public class ItemGroupWithItemRepository : IMasterDetailList<ItemGroupWithItemListDTO>
+    public class ItemGroupWithItemRepository
     {
         private THEntities db = null;
 
@@ -19,7 +19,7 @@ namespace X_Admin_API.Repository.Repo
         }
 
         //-> GetMasterDetailList
-        public async Task<ItemGroupWithItemListDTO> GetMasterDetailList(int currentPage)
+        public async Task<GetListDTO<ItemGroupWithItemViewDTO>> GetMasterDetailList(int currentPage)
         {
             var itemGroups = from g in db.tblItemGroups
                              join d in db.sm_doc.Where(x => x.docs_Deleted == null && x.tableID == Helper.Helper.document_ItemGroupTableID)
@@ -33,7 +33,7 @@ namespace X_Admin_API.Repository.Repo
 
         //-- ** private method --**/
         //-> Listing
-        private async Task<ItemGroupWithItemListDTO> Listing(int currentPage, IQueryable<dynamic> itemGroups, string search = null)
+        private async Task<GetListDTO<ItemGroupWithItemViewDTO>> Listing(int currentPage, IQueryable<dynamic> itemGroups, string search = null)
         {
             int startRow = Helper.Helper.GetStartRow(currentPage, true);
             List<ItemGroupWithItemViewDTO> itemGroupWithItemViews = new List<ItemGroupWithItemViewDTO>();
@@ -46,10 +46,10 @@ namespace X_Admin_API.Repository.Repo
                 itemGroupWithItem.documents = Helper.Helper.GetDocuments(itemGroup.document);
                 itemGroupWithItemViews.Add(itemGroupWithItem);
             }
-            ItemGroupWithItemListDTO itemGroupWithItemList = new ItemGroupWithItemListDTO();
-            itemGroupWithItemList.metaData = await Helper.Helper.GetMetaData(currentPage, itemGroups, "name", "asc", search, true);
-            itemGroupWithItemList.results = itemGroupWithItemViews;
-            return itemGroupWithItemList;
+            var getList = new GetListDTO<ItemGroupWithItemViewDTO>();
+            getList.metaData = await Helper.Helper.GetMetaData(currentPage, itemGroups, "name", "asc", search, true);
+            getList.results = itemGroupWithItemViews;
+            return getList;
         }
 
 
