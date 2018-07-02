@@ -21,8 +21,8 @@ namespace X_Admin_API.Utils.Attribute
         }
         public void LogError(HttpActionExecutedContext filterContext)
         {
-            StringBuilder builder = new StringBuilder();
-            builder
+            StringBuilder errorSB = new StringBuilder();
+            errorSB
                 .AppendLine($"****************** {DateTime.Now.ToString("yyyy-MM-dd HH':'mm':'ss")} *******************")
                 .AppendFormat($"Source:\t {filterContext.Exception.Source}")
                 .AppendLine()
@@ -32,7 +32,24 @@ namespace X_Admin_API.Utils.Attribute
                 .AppendLine()
                 .AppendFormat($"Message:\t {filterContext.Exception.Message}")
                 .AppendLine()
-                .AppendFormat($"Stack:\t {filterContext.Exception.StackTrace}")
+                .AppendFormat($"Stack:\t {filterContext.Exception.StackTrace}");
+            if(filterContext.Exception.InnerException != null)
+            {
+                errorSB
+                .AppendLine()
+                .AppendFormat($"-> ++++++++++ InnerException ++++++++++")
+                .AppendLine()
+                .AppendFormat($"Source:\t {filterContext.Exception.InnerException.Source}")
+                .AppendLine()
+                .AppendFormat($"Target:\t {filterContext.Exception.InnerException.TargetSite}")
+                .AppendLine()
+                .AppendFormat($"Type:\t {filterContext.Exception.InnerException.GetType().Name}")
+                .AppendLine()
+                .AppendFormat($"Message:\t {filterContext.Exception.InnerException.Message}")
+                .AppendLine()
+                .AppendFormat($"Stack:\t {filterContext.Exception.InnerException.StackTrace}");
+            }
+            errorSB
                 .AppendLine()
                 .AppendLine("======================================================================================================")
                 .AppendLine()
@@ -51,7 +68,7 @@ namespace X_Admin_API.Utils.Attribute
             var fileName = day + ".log";
             using (StreamWriter writer = File.AppendText(path + @"\" + fileName))
             {
-                writer.Write(builder.ToString());
+                writer.Write(errorSB.ToString());
                 writer.Flush();
             }
         }
