@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using X_Admin_API.Models;
 using X_Admin_API.Models.DB;
 using X_Admin_API.Models.DTO.Document;
@@ -123,6 +124,8 @@ namespace X_Admin_API.Helper
             List<DocumentViewDTO> documentViews = new List<DocumentViewDTO>();
             foreach (var document in smDoc)
             {
+                //documentViews.Add(MapDBClassToDTO<sm_doc, DocumentViewDTO>(document));
+                document.path = WebConfigurationManager.AppSettings["baseURL"].ToString() + document.path;
                 documentViews.Add(MapDBClassToDTO<sm_doc, DocumentViewDTO>(document));
             }
             return documentViews;

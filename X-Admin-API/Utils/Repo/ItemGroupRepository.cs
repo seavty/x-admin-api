@@ -66,6 +66,7 @@ namespace X_Admin_API.Repository.Repo
             var itemGroupView = new ItemGroupViewDTO();
             itemGroupView = Helper.Helper.MapDBClassToDTO<tblItemGroup, ItemGroupViewDTO>(itemGroups[0].itemGroup);
             itemGroupView.documents = Helper.Helper.GetDocuments(itemGroups[0].document.ToList());
+            
             return itemGroupView;
         }
 
